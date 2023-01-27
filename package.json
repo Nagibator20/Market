@@ -7,7 +7,7 @@
 	"license": "",
 	"type": "module",
 	"scripts": {
-		"dev": "gulp && webpack serve --progress -c config/webpack.dev.js",
+		"dev": "webpack serve --progress -c config/webpack.dev.js",
 		"build": "gulp build --build",
 		"sprite": "gulp sprite",
 		"fonts": "gulp fonts --rewrite",
@@ -20,7 +20,7 @@
 	"devDependencies": {
 		"copy-webpack-plugin": "latest",
 		"css-loader": "latest",
-		"del": "latest",
+		"del": "^7.0.0",
 		"file-include-webpack-plugin-replace": "latest",
 		"fls-bemtree-from-html": "^1.0.0",
 		"gulp": "latest",
@@ -70,6 +70,7 @@
 		"webpack-stream": "latest"
 	},
 	"dependencies": {
+		"gulp-cli": "^2.3.0",
 		"simplebar": "latest"
 	}
 }
