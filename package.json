@@ -8,6 +8,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "webpack serve --progress -c config/webpack.dev.js",
+		"devgulp": "gulp && webpack serve --progress -c config/webpack.dev.js",
 		"build": "gulp build --build",
 		"sprite": "gulp sprite",
 		"fonts": "gulp fonts --rewrite",
