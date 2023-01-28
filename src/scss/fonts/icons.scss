@@ -1,5 +1,5 @@
 %ic {
-	font-family: "icons";
+	font-family: "iconfonts";
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
@@ -8,9 +8,57 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-[class*="_icon-"] {
+[class*="icon-"] {
 	&:before {
 		@extend %ic;
 		display: block;
 	}
+}
+.icon-arrow-down:before {
+  content: "\e900";
+}
+.icon-arrow-up-spoiler:before {
+  content: "\e901";
+}
+.icon-cart:before {
+  content: "\e902";
+}
+.icon-comparer:before {
+  content: "\e903";
+}
+.icon-favorite:before {
+  content: "\e904";
+}
+.icon-footer-clock:before {
+  content: "\e905";
+}
+.icon-footer-location:before {
+  content: "\e906";
+}
+.icon-footer-mail:before {
+  content: "\e907";
+}
+.icon-footer-phone:before {
+  content: "\e908";
+}
+.icon-location:before {
+  content: "\e909";
+}
+.icon-logo:before {
+  content: "\e90a";
+}
+.icon-rub:before {
+  content: "\e90b";
+}
+.icon-search:before {
+  content: "\e90c";
+}
+.icon-star:before {
+  content: "\e90d";
+}
+.icon-user:before {
+  content: "\e90e";
+}
+.icon-back:before {
+  content: "\e90f";
 }

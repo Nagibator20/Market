@@ -1,28 +1,778 @@
-//====================================================================================================
+// ! header =========================================================================
+.header {
+	// .header__top
+	&__top {
+	}
+	// .header__body
+	&__body {
+	}
+	// .header__catalog
+	&__catalog {
+	}
+}
+// ! top-header =====================================================================
+.top-header {
+	background-color: $mainSiteColor;
+	color: #fff;
+	padding: rem(10) 0; //отступы безопасности верх-низ
+	// .top-header__container
+	&__container {
+		display: flex;
+		align-items: center; //центрируем по высоте
+		gap: rem(20); //(gap - свойство flexbox)отступ безопасности(что бы личный кабинет не слипся с меню)
+		min-height: rem(50);
+		@media (max-width: $tablet) {
+			gap: rem(30);
+		}
+	}
+	// .top-header__menu
+	&__menu {
+		flex: 1 1 auto; //раскидывает "меню" на всю ширину
+	}
+	// .top-header__user
+	&__user {
+		position: relative; //~a
+		z-index: 5; //~a иконка видна над всплывающим меню +^
+		display: inline-flex; //Преобразовывает все свои прямые, дочерние элементы во flex-элементы.
+		align-items: center;
+		font-weight: 600;
+		line-height: math.div(20, 18); //вертикальный отступ текста если 0% текст сольется
+		gap: em(15, 18); //~ a тут
+		//Настройка иконочного шрифта делается в (before)
+		&::before {
+			font-size: rem(28);
+			// margin-right: em(15, 28); // будет меняться размер шрифта - будет меняться и отступ //~ a убрал, заменил на gap
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				span {
+					text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+				}
+			}
+		}
+		@media (max-width: $tablet) {
+			//~ a
+			&::before {
+				// меняет размер шрифта с 28 на 35
+				font-size: rem(35);
+			}
+			span {
+				display: none; //убирается текст "Личный кабинет"
+			}
+		}
+	}
+}
+.menu-top-header {
+	// .menu-top-header__list
+	&__list {
+		display: flex;
+		// flex-wrap: wrap; //не дает тексту перескакивать//~r
+		row-gap: 5px;
+		@include adaptiveValue('column-gap', 60, 20);
+		@media (max-width: $tablet) {
+			//~a меняю расположение пунктов бургер меню с ряда на колонку
+			flex-direction: column;
+			row-gap: 25px;
+		}
+	}
+	// .menu-top-header__item
+	&__item {
+		// .menu-top-header__item_catalog
+		&_catalog {
+			//~a
+			@media (min-width: $tablet) {
+				display: none;
+			}
+		}
+	}
+	// .menu-top-header__link
+	&__link {
+		font-size: rem(16);
+		line-height: math.div(20, 16); // работает при изменении р-ра шрифта
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+			}
+		}
+		// .menu-top-header__link_catalog <- БЭМ модификатор
+		&_catalog {
+			//~a
+			display: flex;
+			align-items: center;
+			flex-direction: row-reverse; //реверс рядов
+			justify-content: space-between;
+			&::before {
+				flex: 0 0 14px;
+				height: 14px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: rem(8);
+				transform: translateY(rem(-2)) rotate(-90deg); //translateY(rem(-2)) сдвигает по оси Y
+			}
+		}
+		@media (max-width: $tablet) {
+			//~a адаптивно меняет размер шрифта при разном размере экрана
+			@include adaptiveValue('font-size', 30, 20, 992, 320, 1);
+		}
+	}
+	@media (max-width: $tablet) {
+		//~ a
+		display: none; //убирается оставшийся блок .menu-top-header__list, меню бургер перемещается в лево
+	}
+}
+// Menu-----------------------------------------------
+.menu {
+	// .menu__body
+	&__body {
+		@media (max-width: $tablet) {
+			//~ a настройка перекинутых пунктов меню и (фиксация .menu__body)
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: -100%; //~ a убирает меню в лево
+			overflow: auto;
+			background-color: $mainSiteColor;
+			padding: rem(100) rem(15) rem(50) rem(15); //! каталог товаров опустится ниже меню бургера(долго исправлял)
+			transition: left 0.3s ease 0s;
+			z-index: 4;
+			&::before {
+				//~ a делает заплатку с верху что бы иконки и пункты меню не сливались (добавил .menu-open {... before{left:0}})
+				content: '';
+				position: fixed;
+				width: 100%;
+				height: 70px;
+				left: -100%;
+				top: 0;
+				background-color: $mainSiteColor;
+			}
+			.menu-open & {
+				//~a возвращаю на место (показывает) бургер меню
+				left: 0;
+				&::before {
+					//~ a тут
+					left: 0;
+				}
+			}
+		}
+	}
+	@media (max-width: $tablet) {
+		//~ a
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: flex-end; // раскидывает  бургер и личный кабинет в разные стороны
+	}
+}
 
-//====================================================================================================
+// ! body-header ====================================================================
+.body-header {
+	padding: rem(10) 0; //отступ безопасности сверху снизу
+	background-color: #ecf1f2;
+	// .body-header__container
+	&__container {
+		display: flex;
+		min-height: rem(70);
+		align-items: center;
+		//~a gap: rem(20);
+		@media (max-width: $tablet) {
+			//~a в .body-header__search добавил @media(...){...}
+			justify-content: space-between;
+		}
+		@media (max-width: $mobileSmall) {
+			//~a центрирую логотип
+			// justify-content: center;
+		}
+	}
+	// .body-header__logo
+	&__logo {
+		@extend %ic;
+		@extend .icon-logo;
+		font-size: rem(42);
+		color: $mainSiteColor;
+	}
+	// .body-header__search
+	&__search {
+		flex: 1 1 auto;
+		// padding-right: rem(20); //отступ безопасности справа от поиска //~a переместил в @media tablet
+		// Адаптивный отступ изменится с 158 до 20 в диапазоне от 1620 до 1400 (1 хз что это)
+		// @include adaptiveValue('padding-left', 158, 20, 1620, 1200, 1); //~a переместил в @media mobile
+		@media (min-width: $tablet) {
+			//~a сюда (убирается отступ справа)
+			padding-right: rem(20); //отступ безопасности справа от поиска
+		}
+		@media (min-width: $mobileSmall) {
+			//~a сюда (убирается отступ слева)
+			@include adaptiveValue('padding-left', 158, 20, 1620, 1250, 1);
+		}
+	}
+	// .body-header__actions
+	&__actions {
+	}
+}
+// Search ---------------------------------------------
+.search-header {
+	background-color: rgba(7, 7, 7, 0.03);
+	border-radius: rem(3);
+	position: relative;
+	border: 1px solid rgba(4, 4, 4, 0.5);
+	@media (min-width: $tablet) {
+		max-width: rem(377); //ограничивается ширина input поиска
+	}
+	// .search-header__button
+	&__button {
+		position: absolute;
+		background-color: transparent;
+		height: rem(41);
+		width: rem(41);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: rem(8);
+		font-size: rem(18);
+		color: rgba(0, 0, 0, 0.5);
+	}
+	// .search-header__input
+	&__input {
+		//input изначально белый прямоугольник!!!!!
+		width: 100%; //ограничивается ширина input поиска
+		background-color: transparent; // прозрачность
+		border-radius: rem(3);
+		height: rem(41);
+		color: $mainColor;
+		padding: 0px rem(10) 0px rem(50); //отступы слева -> справа
+		&::placeholder {
+			color: rgba(0, 0, 0, 0.5);
+		}
+	}
+	@media (max-width: $mobileSmall) {
+		//~a высветливаю поиск
+		background-color: #fff;
+	}
+}
+// Actions ---------------------------------------------
+.actions-header {
+	display: flex;
+	align-items: center;
+	@media (max-width: $tablet) {
+		//~a убираю локацию и весь блок Actions
+		display: none;
+	}
+	// column-gap: rem(30); //отступ между элементами actions-header//~r
+	@include adaptiveValue('column-gap', 30, 20, 1620, 1000, 1); //~a
+	// .actions-header__location
+	&__location {
+		display: inline-flex;
+		align-items: center;
+		font-weight: 600;
+		// margin: 0 rem(25) 0 0;//~r
+		@include adaptiveValue('margin-right', 25, 0, 1620, 1400, 1); //~a
+		&::before {
+			font-size: rem(24);
+			margin: 0 em(10, 24) 0 0;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				span {
+					text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+				}
+			}
+		}
+		// @media (max-width: $tablet) {
+		// 	//~a убираю локацию
+		// 	display: none;
+		// }
+	}
+	// .actions-header__phones
+	&__phones {
+	}
+	// .actions-header__favorite
+	&__favorite {
+		position: relative; //~a
+		z-index: 5; //~a иконка видна над всплывающим меню +^
+		font-size: rem(27);
+	}
+	// .actions-header__cart
+	&__cart {
+	}
+}
+.phones-header {
+	position: relative; //~a
+	z-index: 5; //~a иконка видна над всплывающим меню +^
+	// .phones-header__items
+	&__items {
+	}
+	// .phones-header__item
+	&__item {
+		position: relative;
+		display: flex;
+	}
+	// .phones-header__phone
+	&__phone {
+		font-weight: 600;
+		white-space: nowrap; // что бы не перескакивали телефоны (управляет тем, как обрабатываются пробельные символы внутри элемента)!!!
+		line-height: math.div(22, 18);
+		//~a добавляю иконку телефона (изначально скрытой)
+		&::before {
+			//~a сюда
+			@extend %ic;
+			@extend .icon-footer-phone;
+			display: none;
+		}
+		@media (max-width: $tablet) {
+			//~a
+			font-size: rem(25);
+		}
+		@media (max-width: $mobileSmall) {
+			//~а показываю иконку при определенном р-ре экрана
+			// @extend %ic; // нельзя делать в медиазапросе перенес в before
+			// @extend .icon-phone;
+			&::before {
+				display: block;
+				font-size: rem(32);
+			}
+			span {
+				display: none;
+			}
+		}
+	}
+	// .phones-header__arrow
+	&__arrow {
+		color: #e8aa31;
+		font-size: rem(10);
+		transition: transform 0.1s ease 0s;
+		margin-left: em(17, 16); // 17 - отступ в (px)
+		// Разворот стрелки на 180град
+		// Добавляется класс в момент если она открыта
+		&._spoller-active {
+			z-index: 3; //! Добавил сам
+			transform: rotate(180deg);
+		}
+		@media (max-width: $tablet) {
+			display: none;
+		}
+	}
+	// .phones-header__list
+	&__list {
+		// ? открепляет список телефонов(относительно phone-header__item !!!!! -> position: relative;)
+		position: absolute;
+		top: 0; //* было 100%
+		width: 100%;
+		right: 14px; //* добавил
+		left: 100; //* было 0
+		z-index: 2;
+		// margin: rem(5) 0 0 0;
+		border-radius: rem(10);
+		background-color: #ecf1f2;
+		padding: 0 rem(14) rem(14) rem(14); //* было просто rem(14)
+		box-shadow: 0 1 2px rgba(0, 0, 0, 0.2);
+		li {
+			&:not(:last-child) {
+				margin-bottom: em(8, 18);
+			}
+		}
+		@media (max-width: $tablet) {
+			display: none;
+		}
+		// background-color: #e8aa31;
+	}
+	// .phones-header__callback
+	&__callback {
+		margin-top: rem(3);
+		font-weight: 700;
+		color: #e8aa31;
+		line-height: math.div(22, 18);
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+			}
+		}
+		@media (max-width: $tablet) {
+			display: none;
+		}
+	}
+}
+.cart-header {
+	display: flex;
+	align-items: center;
+	column-gap: 15px; // отступ безопасности
+	position: relative; //~a
+	z-index: 5; //~a иконка видна над всплывающим меню +^
+	// .cart-header__icon
+	&__icon {
+		flex: 0 0 37px;
+		font-size: rem(35);
+		position: relative;
+		span {
+			position: absolute;
+			width: rem(14);
+			height: rem(14);
+			background-color: #e8aa31;
+			border: 2px solid #ecf1f2;
+			color: #fff;
+			font-size: rem(8);
+			border-radius: 50%;
+			display: flex;
+			top: 0;
+			right: 0;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	// .cart-header__body
+	&__body {
+		line-height: math.div(20, 16);
+		font-size: rem(16);
+		flex: 0 0 auto; // помещает текст в одну строчку и запрет на изменение ширины и высоты
+		@media (max-width: em(1250)) {
+			// ~ a убирает (Оформить заказ)
+			display: none;
+		}
+	}
+	// .cart-header__sum
+	&__sum {
+		font-weight: 500;
+		&:not(:last-child) {
+			margin-bottom: em(5, 16);
+		}
+	}
+	// .cart-header__link
+	&__link {
+		color: #e8aa31;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+			}
+		}
+	}
+}
 
-//Burger
-/*
+// ! catalog-header =================================================================
+.catalog-header {
+	position: relative;
+	background-color: $mainSiteColor;
+	color: #fff;
+	// padding: rem(10) 0; // & отступы безопасности верх-низ убрал, в __link изменил min-height с 50 на 70,для того что бы кнопки были больше(удобнее для тачскринов)
+	// .catalog-header__container
+	&__container {
+	}
+	// .catalog-header__menu
+	&__menu {
+	}
+	@media (max-width: $mobileSmall) {
+		//~a отступы сверху и снизу поиска
+		padding: rem(20) 0;
+	}
+}
+.menu-catalog {
+	// .menu-catalog__list
+	&__list {
+		// min-height: rem(50); // & что бы не делать align-item:center перенес в __link
+		display: flex;
+		// gap: 10px;//~a поменял на column-gap
+		column-gap: 10px; //~a
+		justify-content: space-between;
+		//~a меняю расположение списка №3
+		@media (max-width: $tablet) {
+			flex-direction: column;
+			row-gap: rem(25);
+		}
+	}
+	// .menu-catalog__item
+	&__item {
+	}
+	// .menu-catalog__link
+	&__link {
+		// min-height: rem(70); // & тут //~a -"-
+		display: flex;
+		// padding: 0 rem(10); //~ a -"-
+		// justify-content: center;//~a переместил в медиа, так как центровка в данном случае не нужна №4
+		// align-items: center;//~a -"-
+		// text-align: center;//~a -"-
+		position: relative;
+		transition: color 0.3s ease 0s; //только цвет
+
+		@media (min-width: $tablet) {
+			//~a сюда
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			min-height: rem(70); // & тут
+			padding: 0 rem(10);
+		}
+		&::after {
+			content: '';
+			opacity: 0;
+			visibility: hidden;
+			position: absolute;
+			bottom: 0;
+			left: rem(10); // потому что padding: 0 10px  в __link
+			// before и after -> строчный элемент, а для строчных элементов не действуют некоторые CSS свойства в частности width, height
+			width: calc(100% - rem(20));
+			height: 1px;
+			background-color: #e8aa31;
+			transition: all 0.3s ease 0s;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: #e8aa31;
+				&::after {
+					opacity: 1;
+					visibility: visible; // будет работать только на тех устройствах у которых есть мышь
+				}
+			}
+		}
+		@media (min-width: $tablet) {
+			&._sub-menu-active {
+				// * Js При получении класса название меню закрашивается статически
+				color: #e8aa31;
+				&::after {
+					opacity: 1;
+					visibility: visible; // будет работать только на тех устройствах у которых есть мышь
+				}
+			}
+		}
+		@media (max-width: $tablet) {
+			//~a адаптивный размер шрифта №5 -> №6 меняю z-index в icon-menu,!!! и дорабатываю скрипт в function.js ~445строка (пришлось так делать т.к. при входе в "Каталог товаров" не срабатывало так как каталог товаров - отдельное всплывающее окно)
+			@include adaptiveValue('font-size', 30, 20, 992, 320, 1);
+		}
+		&[data-parent] {
+			//~a по селектору тега (dataset) добавляю стрелки к пунктам подменю
+			&::before {
+				@extend %ic;
+				@extend .icon-arrow-down;
+				display: none;
+				@media (max-width: $tablet) {
+					transform: translateY(rem(10)) rotate(-90deg);
+					display: block;
+					font-size: rem(10);
+				}
+			}
+			@media (max-width: $tablet) {
+				display: flex;
+				flex-direction: row-reverse;
+				width: 100%; // justify-content: space-between без width:100% не будет работать так как это - кнопки
+				justify-content: space-between;
+			}
+		}
+	}
+	// .menu-catalog__sub-menu
+	&__sub-menu {
+		// делаю относительно catalog-header (position: relative) в других элементах между ними не должно быть position: relative
+		width: 100%;
+		left: 0;
+		top: 100%;
+		background-color: $mainSiteColor;
+	}
+	// .menu-catalog__back
+	&__back {
+		//~a скрываю кнопку "назад" бургер меню
+		display: none;
+		@media (max-width: $tablet) {
+			//~ а показываю кнопку "назад" бургер меню
+			display: inline-flex;
+			align-items: center;
+			@include adaptiveValue('font-size', 30, 20, 992, 320, 1);
+			//~a отступ от "назад" к следующему пункту меню
+			&:not(:last-child) {
+				margin-bottom: em(65, 30);
+			}
+			//~a отступ от "назад" от стрелки
+			&::before {
+				margin: 0 em(13, 30) 0 0;
+			}
+		}
+	}
+	@media (max-width: $tablet) {
+		//~a убираю меню (для разрешения планшета) №1
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: $mainSiteColor;
+		padding: rem(25) rem(15) rem(50) rem(15);
+		transition: left 0.3s ease 0s;
+		.catalog-open & {
+			//~a обработку события добавил в script.js №2
+			//~a При клике на "Каталог товаров >" выдвигает menu-catalog (нужно добавить Z-index) .выше в @media, задаю стиль и скрываю его в лево
+			//~a добавил доработку в function.js (модуль работы меню бургер 438, 437 строка) на проверку и удаление класса
+			left: 0;
+			z-index: 6; //~a должен полностью. все накрыть
+		}
+	}
+}
+.sub-menu-catalog {
+	@media (max-width: $tablet) {
+		//~a убираю меню (для разрешения планшета) №7
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: $mainSiteColor;
+		padding: rem(25) rem(15) rem(50) rem(15);
+		transition: left 0.3s ease 0s;
+		//  !!!!! №8 Важно расположение (&)!!! ДОЛГО ИСПРАВЛЯЛ -> (._sub-menu-open &{...} <- неправильно в данном случае)
+		// !!! &._sub-menu-open { // Было (изменил потому что переместил весь @media{запрос } из .sub-menu-catalog__block в корень, так как пришлось навешивать еще один класс)
+		.sub-menu-open & {
+			//~a обработку события добавил в script.js №9
+			//~a При клике на подменю "Каталог ножей" выдвигает sub-menu-catalog (нужно добавить Z-index). Выше в @media, задаю стиль и скрываю его в лево
+			//~a добавил доработку в function.js (модуль работы меню бургер 438, 437 строка) на проверку и удаление класса
+			left: 0;
+			z-index: 6; //~a должен полностью. все накрыть
+			display: block; //~a нужно отменить display: grid что бы изменить расположение пунктов меню №10
+		}
+	}
+	// .sub-menu-catalog__block
+	&__block {
+		// (display: flex; // * Js Изменил на display: none после написания скрипта(чтобы появлялось и исчезало меню))
+		display: none; // !!!<--В видео сейчас так--> (hidden в Html)
+
+		// & что бы не повторять для каждого кол. рядов (repeat(кол., 1fr)) пишу цикл
+		// grid-template-columns: repeat(5, 1fr);
+		// grid-template-columns: repeat(2, 1fr);
+		@for $var from 1 to 6 {
+			// .sub-menu-catalog__block_номер
+			&_#{$var} {
+				// justify-content: start;
+				// grid-template-columns выстраивает блоки рядов в колонки
+				// minmax - определяет диапазон размеров, который больше или равен min и меньше или равен max. Используется в CSS Grids
+				grid-template-columns: repeat($var, minmax(auto, rem(320)));
+			}
+		}
+		&._sub-menu-open {
+			// * Js класс добавляется там. При получении класса, меню открывается
+			display: grid;
+			@media (max-width: $tablet) {
+				display: block;
+			}
+		}
+	}
+	// .sub-menu-catalog__container
+	&__container {
+		padding: 0 rem(10);
+	}
+	// .sub-menu-catalog__category
+	&__category {
+		font-size: rem(16);
+		line-height: math.div(20, 16);
+		// font-weight: 700;//~ a -''-
+		// padding: rem(30) rem(15) rem(30) 0; //~a перенес в @media(min-width)
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+			}
+		}
+		@media (min-width: $tablet) {
+			//~a сюда
+			font-weight: 700;
+			padding: rem(30) rem(15) rem(30) 0;
+		}
+		@media (max-width: $tablet) {
+			//~a отступы с низу кроме последнего элемента
+			&:not(:last-child) {
+				margin-bottom: em(20, 16);
+			}
+		}
+	}
+	// .sub-menu-catalog__list
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding: rem(30) rem(15) rem(30) 0;
+		border-bottom: 1px solid rgba(155, 255, 255, 0.3);
+		border-top: 1px solid rgba(155, 255, 255, 0.3);
+		@media (max-width: $tablet) {
+			//~a скрываю 3й уровень меню при расширении планшета
+			display: none;
+		}
+	}
+	// .sub-menu-catalog__item
+	&__item {
+	}
+	// .sub-menu-catalog__link
+	&__link {
+		font-size: rem(16);
+		line-height: math.div(20, 16);
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+			}
+		}
+	}
+	// .sub-menu-catalog__link-category
+	&__link-category {
+		// ~ a адаптивный размер шрифта (без "1" в конце, так как не в мобильном разрешении размер шрифта очень большой)
+		@include adaptiveValue('font-size', 30, 20, 992, 320 /*, 1*/);
+	}
+	// .sub-menu-catalog__footer
+	&__footer {
+		padding: rem(30) rem(15) rem(30) 0; //& тут
+		@media (max-width: $tablet) {
+			//~a скрываю "смотреть всё"
+			display: none;
+		}
+	}
+	// .sub-menu-catalog__all
+	&__all {
+		// padding: rem(30) rem(15) 0 rem(15); //& после того как обернул элементы в оболочку переместил в __footer
+		font-size: rem(16);
+		color: #e8aa31;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline; // будет работать только на тех устройствах у которых есть мышь
+			}
+		}
+	}
+	// .sub-menu-catalog__back
+	&__back {
+		//~a скрываю кнопку "назад" бургер меню
+		display: none;
+		@media (max-width: $tablet) {
+			//~ а показываю кнопку "назад" бургер меню
+			display: inline-flex;
+			align-items: center;
+			@include adaptiveValue('font-size', 30, 20, 992, 320, 1);
+			//~a отступ от "назад" к следующему пункту меню
+			&:not(:last-child) {
+				margin-bottom: em(65, 30);
+			}
+			//~a отступ от "назад" от стрелки
+			&::before {
+				margin: 0 em(13, 30) 0 0;
+			}
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------------
+// ! Бургер меню ====================================================================
 .icon-menu {
-	display: none;
-	@media (max-width: $mobile) {
+	// display: none; //~ r (none что бы просто не мешал при верстке)
+	@media (max-width: $tablet) {
 		display: block;
 		position: relative;
-		width: rem(30);
-		height: rem(18);
+		// width: rem(30);//если объект является flex элементом нужно использовать свойство flex(0 0 30px) 0 запрещает изменение 1 разрешает
+		// flex: 0 0 30px;//~r
+		width: 40px;
+		height: rem(22.5);
 		cursor: pointer;
-		z-index: 5;
+		z-index: 10; //~a крестик должен быть выше всех №6
 		span,
 		&::before,
 		&::after {
-			content: "";
+			content: '';
 			transition: all 0.3s ease 0s;
 			right: 0;
 			position: absolute;
 			width: 100%;
 			height: rem(2);
-			background-color: #000;
+			background-color: #fff;
 		}
 		&::before {
 			top: 0;
@@ -37,9 +787,9 @@
 			span {
 				width: 0;
 			}
-			&::before,
-			&::after {
-			}
+			// /&::before,
+			// /&::after {
+			// }
 			&::before {
 				top: calc(50% - rem(1));
 				transform: rotate(-45deg);
@@ -51,4 +801,3 @@
 		}
 	}
 }
-*/
