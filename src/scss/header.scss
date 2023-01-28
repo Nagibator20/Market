@@ -1,3 +1,6 @@
+@use 'sass:math';
+@import 'base/mixins';
+
 // ! header =========================================================================
 .header {
 	// .header__top
@@ -345,7 +348,7 @@
 		margin-left: em(17, 16); // 17 - отступ в (px)
 		// Разворот стрелки на 180град
 		// Добавляется класс в момент если она открыта
-		&._spoller-active {
+		&._spoiler-active {
 			z-index: 3; //! Добавил сам
 			transform: rotate(180deg);
 		}
