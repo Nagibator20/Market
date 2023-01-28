@@ -1,5 +1,5 @@
 .main-block {
-	background: url('img/mainpage/main-block/bg.jpg') center / cover no-repeat;
+	background: url('../img/mainpage/main-block/bg.jpg') center / cover no-repeat;
 	@include adaptiveValue('padding-top', 40, 20);
 	@include adaptiveValue('padding-bottom', 60, 20);
 	// background: $mainColor;
