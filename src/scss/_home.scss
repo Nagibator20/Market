@@ -1,0 +1,237 @@
+.main-block {
+	background: url('img/mainpage/main-block/bg.jpg') center / cover no-repeat;
+	@include adaptiveValue('padding-top', 40, 20);
+	@include adaptiveValue('padding-bottom', 60, 20);
+	// background: $mainColor;
+	// .main-block__container
+	&__container {
+	}
+	// .main-block__body
+	&__body {
+		display: grid;
+		grid-template-columns: 1fr percent(635, 1600); //percent -> mixin который вычисляет проценты (сколько процентов 635 от 1600)
+	}
+	// .main-block__slider
+	&__slider {
+	}
+	// .main-block__swiper
+	&__swiper {
+	}
+	// .main-block__slide
+	&__slide {
+	}
+	// .main-block__media
+	&__media {
+	}
+	// .main-block__advantages
+	&__advantages {
+	}
+}
+.slide-main-block {
+	// .slide-main-block__content
+	&__content {
+		color: #fff;
+		padding: 0 rem(40) 0 0;
+		&:not(:last-child) {
+			// отступ до кнопки "Подробнее"
+			@include adaptiveValue('margin-bottom', 60, 30);
+		}
+	}
+	// .slide-main-block__title
+	&__title {
+		font-weight: bold;
+		letter-spacing: 0.03em;
+		font-size: rem(36);
+		//! 46 <- В макете сайта, 36 величина шрифта (данное действие позволяет при изменении размера шрифта подстраивать сразу lin-height)
+		line-height: math.div(46, 36);
+		&:not(:last-child) {
+			// not last-child - для того что бы, если объект останется 1 то margin-bottom  исчез.
+			margin-bottom: em(15, 36); // отзывчивые единицы (экономят время). margin-bottom 15 <- В макете сайта 36 р-р шрифта
+		}
+	}
+	// .slide-main-block__sub-title
+	&__sub-title {
+		// font-weight: 500; // прописано по умолчанию в style.scss
+		&:not(:last-child) {
+			margin-bottom: em(30, 36);
+		}
+		font-size: rem(36);
+		line-height: math.div(46, 36);
+	}
+	// .slide-main-block__text
+	&__text {
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 20px;
+		line-height: math.div(30, 20);
+	}
+	// .slide-main-block__button
+	&__button {
+	}
+}
+.media-main-block {
+	// центрирую медиа блок (с ножами в подставке)
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: rem(15); //отступы безопасности
+	// .media-main-block__body
+	&__body {
+		position: relative;
+	}
+	// .media-main-block__image
+	&__image {
+		position: relative;
+		&::before {
+			content: '';
+			width: 423px;
+			height: 423px;
+			border-radius: 50%;
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			position: absolute;
+			bottom: 3.5%;
+			right: 0;
+			transform: translate(percent(131, 423), 0px); // высчитываю на сколько нужно сдвинуть круг в процентном соотношении (131px в макете 423 диаметр)
+		}
+		img {
+			// обращаюсь к картинке для того чтобы ею закрыть часть круга
+			position: relative;
+			z-index: 2;
+		}
+	}
+	// .media-main-block__tips
+	&__tips {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 5;
+	}
+	// .media-main-block__tip
+	&__tip {
+		width: rem(20);
+		height: rem(20);
+		position: absolute;
+		cursor: pointer;
+		// transition: all 0.3s ease 0s; //! крутится весь блок, в месте с подсказкой. Перенес в span!!
+		// @media (any-hover: hover) { //! -' '-
+		// 	// &:hover {
+		// 	// 	// transform: rotate(-180deg);
+		// 	// 	// opacity: 0;
+		// 	// }
+		// }
+		&::before,
+		&::after {
+			content: '';
+			border-radius: 50%;
+			background-color: #e8aa31;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+		&::after {
+			transform: scale(1.6);
+			opacity: 0.5;
+		}
+		span {
+			// !--Моя переделка-----------------------(можно перенести (пока не знаю как правильнее) в _block)
+			position: relative; // ! Сравнить с видео
+			z-index: 2;
+			color: #fff;
+			font-weight: 600;
+			font-size: rem(20);
+			position: absolute; // ! Сравнить с видео
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			//!----------------------------Тут-------------------
+			transition: all 0.3s ease 0s;
+			@media (any-hover: hover) {
+				&:hover {
+					transform: rotate(-180deg);
+				}
+			}
+		}
+		// .media-main-block__tip_block
+		// !--Моя переделка---------------------(добавил div с классом .media-main-block__tip_block !!!)
+		&_block {
+			// position: relative;
+			// z-index: 2;
+			// color: #fff;
+			// font-weight: 600;
+			// font-size: rem(20);
+			//  position: absolute;
+			// width: 100%;
+			// height: 100%;
+			// top: 0;
+			// left: 0;
+			// display: flex;
+			// justify-content: center;
+			// align-items: center;
+			&::after {
+				content: attr(data-tippy-content);
+				position: absolute;
+				left: 50%;
+				top: rem(-30);
+				transform: translateX(-50%);
+				color: #000;
+				background-color: #e8aa31;
+				border-radius: rem(3);
+				padding: rem(2) rem(5);
+				font-size: rem(12);
+				justify-content: center;
+				align-items: center;
+				white-space: nowrap;
+				// border: 10px solid;//!
+				// border-color: #0000 #0000 #000 #0000 ; //! должна была быть стрелочка - но что то пошло не так))
+				opacity: 0;
+				visibility: hidden;
+				transition: all 0.3s ease 0s;
+			}
+			@media (any-hover: hover) {
+				&:hover {
+					&::after {
+						//!!! если скрываешь псевдо элемент - то и в haver нужно добавлять псевдо элемент!!!!!!!!!!!!!
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+			}
+		}
+
+		// .media-main-block__tip_1
+		&_1 {
+			//! Расположение "абсолютных" объектов нужно делать относительно -> в процентах, для того, что бы если объект (родитель) будет меняться по габаритам "абсолютные" объекты тоже будут менять свое расположение.
+			// Размещаю "+", в процентном соотношении относительно габаритов картинки
+			top: percent(186, 500); // 500 высота, 186 отступ от верхнего края
+			left: percent(72, 447); // 447 ширина, 72 отступ от левого края
+		}
+		// .media-main-block__tip_2
+		&_2 {
+			top: percent(57, 500);
+			right: percent(13, 447);
+		}
+		// .media-main-block__tip_3
+		&_3 {
+			bottom: percent(115, 500);
+			right: percent(28, 447);
+		}
+	}
+}
+.advantages-main {
+	// .advantages-main__item
+	&__item {
+	}
+	// .advantages-main__icon
+	&__icon {
+	}
+	// .advantages-main__text
+	&__text {
+	}
+}
