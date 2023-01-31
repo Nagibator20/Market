@@ -194,6 +194,25 @@ body {
   padding: 0 0.9375rem;
 }
 
+.button {
+  display: inline-flex;
+  padding: 0px 0px;
+  background: #e8aa31;
+  box-shadow: 0px 4px 20px rgba(232, 170, 49, 0.43);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #ffffff;
+  padding: 0.5rem 3.25rem;
+  line-height: 1.6;
+  transition: box-shadow 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .button:hover {
+    box-shadow: 0px 4px 25px rgba(232, 170, 49, 0.63);
+  }
+}
+
 body::after {
   content: "";
   background-color: rgba(0, 0, 0, 0.5);
@@ -1136,6 +1155,12 @@ body::after {
   height: 1.25rem;
   position: absolute;
   cursor: pointer;
+  transition: transform 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .media-main-block__tip:hover {
+    transform: rotate(-180deg);
+  }
 }
 .media-main-block__tip::before, .media-main-block__tip::after {
   content: "";
@@ -1165,36 +1190,6 @@ body::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease 0s;
-}
-@media (any-hover: hover) {
-  .media-main-block__tip span:hover {
-    transform: rotate(-180deg);
-  }
-}
-.media-main-block__tip_block::after {
-  content: attr(data-tippy-content);
-  position: absolute;
-  left: 50%;
-  top: -1.875rem;
-  transform: translateX(-50%);
-  color: #000;
-  background-color: #e8aa31;
-  border-radius: 0.1875rem;
-  padding: 0.125rem 0.3125rem;
-  font-size: 0.75rem;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease 0s;
-}
-@media (any-hover: hover) {
-  .media-main-block__tip_block:hover::after {
-    opacity: 1;
-    visibility: visible;
-  }
 }
 .media-main-block__tip_1 {
   top: 37.2%;

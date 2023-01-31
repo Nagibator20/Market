@@ -113,13 +113,13 @@
 		height: rem(20);
 		position: absolute;
 		cursor: pointer;
-		// transition: all 0.3s ease 0s; //! крутится весь блок, в месте с подсказкой. Перенес в span!!
-		// @media (any-hover: hover) { //! -' '-
-		// 	// &:hover {
-		// 	// 	// transform: rotate(-180deg);
-		// 	// 	// opacity: 0;
-		// 	// }
-		// }
+		transition: transform 0.3s ease 0s;
+		@media(any-hover:hover){
+			&:hover{
+				transform: rotate(-180deg);
+			}
+		}
+
 		&::before,
 		&::after {
 			content: '';
@@ -135,14 +135,13 @@
 			transform: scale(1.6);
 			opacity: 0.5;
 		}
-		span {
-			// !--Моя переделка-----------------------(можно перенести (пока не знаю как правильнее) в _block)
-			position: relative; // ! Сравнить с видео
+		span{
+			position: relative;
 			z-index: 2;
 			color: #fff;
 			font-weight: 600;
 			font-size: rem(20);
-			position: absolute; // ! Сравнить с видео
+			position: absolute;
 			width: 100%;
 			height: 100%;
 			top: 0;
@@ -150,61 +149,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			//!----------------------------Тут-------------------
-			transition: all 0.3s ease 0s;
-			@media (any-hover: hover) {
-				&:hover {
-					transform: rotate(-180deg);
-				}
-			}
 		}
-		// .media-main-block__tip_block
-		// !--Моя переделка---------------------(добавил div с классом .media-main-block__tip_block !!!)
-		&_block {
-			// position: relative;
-			// z-index: 2;
-			// color: #fff;
-			// font-weight: 600;
-			// font-size: rem(20);
-			//  position: absolute;
-			// width: 100%;
-			// height: 100%;
-			// top: 0;
-			// left: 0;
-			// display: flex;
-			// justify-content: center;
-			// align-items: center;
-			&::after {
-				content: attr(data-tippy-content);
-				position: absolute;
-				left: 50%;
-				top: rem(-30);
-				transform: translateX(-50%);
-				color: #000;
-				background-color: #e8aa31;
-				border-radius: rem(3);
-				padding: rem(2) rem(5);
-				font-size: rem(12);
-				justify-content: center;
-				align-items: center;
-				white-space: nowrap;
-				// border: 10px solid;//!
-				// border-color: #0000 #0000 #000 #0000 ; //! должна была быть стрелочка - но что то пошло не так))
-				opacity: 0;
-				visibility: hidden;
-				transition: all 0.3s ease 0s;
-			}
-			@media (any-hover: hover) {
-				&:hover {
-					&::after {
-						//!!! если скрываешь псевдо элемент - то и в haver нужно добавлять псевдо элемент!!!!!!!!!!!!!
-						opacity: 1;
-						visibility: visible;
-					}
-				}
-			}
-		}
-
 		// .media-main-block__tip_1
 		&_1 {
 			//! Расположение "абсолютных" объектов нужно делать относительно -> в процентах, для того, что бы если объект (родитель) будет меняться по габаритам "абсолютные" объекты тоже будут менять свое расположение.
@@ -223,6 +168,124 @@
 			right: percent(28, 447);
 		}
 	}
+
+	// !!! Моя переделка работает без Webpack!!!
+	// // .media-main-block__tip
+	// &__tip {
+	// 	width: rem(20);
+	// 	height: rem(20);
+	// 	position: absolute;
+	// 	cursor: pointer;
+	// 	// transition: all 0.3s ease 0s; //! крутится весь блок, в месте с подсказкой. Перенес в span!!
+	// 	// @media (any-hover: hover) { //! -' '-
+	// 	// 	// &:hover {
+	// 	// 	// 	// transform: rotate(-180deg);
+	// 	// 	// 	// opacity: 0;
+	// 	// 	// }
+	// 	// }
+	// 	&::before,
+	// 	&::after {
+	// 		content: '';
+	// 		border-radius: 50%;
+	// 		background-color: #e8aa31;
+	// 		position: absolute;
+	// 		width: 100%;
+	// 		height: 100%;
+	// 		top: 0;
+	// 		left: 0;
+	// 	}
+	// 	&::after {
+	// 		transform: scale(1.6);
+	// 		opacity: 0.5;
+	// 	}
+	// 	span {
+	// 		// !--Моя переделка-----------------------(можно перенести (пока не знаю как правильнее) в _block)
+	// 		position: relative; // ! Сравнить с видео
+	// 		z-index: 2;
+	// 		color: #fff;
+	// 		font-weight: 600;
+	// 		font-size: rem(20);
+	// 		position: absolute; // ! Сравнить с видео
+	// 		width: 100%;
+	// 		height: 100%;
+	// 		top: 0;
+	// 		left: 0;
+	// 		display: flex;
+	// 		justify-content: center;
+	// 		align-items: center;
+	// 		//!----------------------------Тут-------------------
+	// 		transition: all 0.3s ease 0s;
+	// 		@media (any-hover: hover) {
+	// 			&:hover {
+	// 				transform: rotate(-180deg);
+	// 			}
+	// 		}
+	// 	}
+	// 	// .media-main-block__tip_block
+	// 	// !--Моя переделка---------------------(добавил div с классом .media-main-block__tip_block !!!)
+	// 	&_block {
+	// 		// position: relative;
+	// 		// z-index: 2;
+	// 		// color: #fff;
+	// 		// font-weight: 600;
+	// 		// font-size: rem(20);
+	// 		//  position: absolute;
+	// 		// width: 100%;
+	// 		// height: 100%;
+	// 		// top: 0;
+	// 		// left: 0;
+	// 		// display: flex;
+	// 		// justify-content: center;
+	// 		// align-items: center;
+	// 		&::after {
+	// 			content: attr(data-tippy-content);
+	// 			position: absolute;
+	// 			left: 50%;
+	// 			top: rem(-30);
+	// 			transform: translateX(-50%);
+	// 			color: #000;
+	// 			background-color: #e8aa31;
+	// 			border-radius: rem(3);
+	// 			padding: rem(2) rem(5);
+	// 			font-size: rem(12);
+	// 			justify-content: center;
+	// 			align-items: center;
+	// 			white-space: nowrap;
+	// 			// border: 10px solid;//!
+	// 			// border-color: #0000 #0000 #000 #0000 ; //! должна была быть стрелочка - но что то пошло не так))
+	// 			opacity: 0;
+	// 			visibility: hidden;
+	// 			transition: all 0.3s ease 0s;
+	// 		}
+	// 		@media (any-hover: hover) {
+	// 			&:hover {
+	// 				&::after {
+	// 					//!!! если скрываешь псевдо элемент - то и в haver нужно добавлять псевдо элемент!!!!!!!!!!!!!
+	// 					opacity: 1;
+	// 					visibility: visible;
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+
+	// 	// .media-main-block__tip_1
+	// 	&_1 {
+	// 		//! Расположение "абсолютных" объектов нужно делать относительно -> в процентах, для того, что бы если объект (родитель) будет меняться по габаритам "абсолютные" объекты тоже будут менять свое расположение.
+	// 		// Размещаю "+", в процентном соотношении относительно габаритов картинки
+	// 		top: percent(186, 500); // 500 высота, 186 отступ от верхнего края
+	// 		left: percent(72, 447); // 447 ширина, 72 отступ от левого края
+	// 	}
+	// 	// .media-main-block__tip_2
+	// 	&_2 {
+	// 		top: percent(57, 500);
+	// 		right: percent(13, 447);
+	// 	}
+	// 	// .media-main-block__tip_3
+	// 	&_3 {
+	// 		bottom: percent(115, 500);
+	// 		right: percent(28, 447);
+	// 	}
+	// }
 }
 .advantages-main {
 	// .advantages-main__item

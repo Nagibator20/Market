@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-	@@include('html/_head.htm',{
-	"title":"Главная"
-	})
+	@@include('html/_head.htm',{ "title":"Главная" })
 	<body>
 		<div class="wrapper">
 			@@include('html/_header.htm',{})
@@ -24,6 +22,39 @@
 										</div>
 										<a href="" class="slide-main-block__button button">Подробнее</a>
 									</div>
+									<div class="main-block__slide slide-main-block">
+										<div class="slide-main-block__content">
+											<h2 class="slide-main-block__title">Интернет магазин сертифицированных</h2>
+											<div class="slide-main-block__sub-title">златоусовских ножей</div>
+											<div class="slide-main-block__text">
+												Добро пожаловать на официальный сайт "ЗЛАТМАКС"! В нашем магазине представлен наиболее широкий выбор Златоусовских ножей от
+												Златоусовских Оружейных Фабрик и компаний, мы являемся официальными поставщиками.
+											</div>
+											<!-- ~ button выделяю в отдельный класс - так как они будут встречаться много раз -->
+										</div>
+										<a href="" class="slide-main-block__button button">Подробнее</a>
+									</div>
+									<div class="main-block__slide slide-main-block">
+										<div class="slide-main-block__content">
+											<h2 class="slide-main-block__title">Интернет магазин сертифицированных</h2>
+											<div class="slide-main-block__sub-title">златоусовских ножей</div>
+											<div class="slide-main-block__text">
+												Добро пожаловать на официальный сайт "ЗЛАТМАКС"! В нашем магазине представлен наиболее широкий выбор Златоусовских ножей от
+												Златоусовских Оружейных Фабрик и компаний, мы являемся официальными поставщиками.
+											</div>
+											<!-- ~ button выделяю в отдельный класс - так как они будут встречаться много раз -->
+										</div>
+										<a href="" class="slide-main-block__button button">Подробнее</a>
+									</div>
+								</div>
+								<!-- ! Вывод для Пагинации -->
+								<div class="main-block__controll controll-main-block">
+									<!-- ! (линии пагинация) класс добавляется в sliders.js -->
+									<div class="controll-main-block__dotts"></div>
+									<!-- ! для кастомной фракции -->
+									<div class="controll-main-block__fraction fraction-controll">
+										<span class="fraction-controll__current">0</span> / <span class="fraction-controll__all">0</span>
+									</div>
 								</div>
 							</div>
 							<div class="main-block__media media-main-block">
@@ -32,16 +63,23 @@
 										<img src="img/mainpage/main-block/image.png" alt="Картинка" />
 									</div>
 									<div class="media-main-block__tips">
-										<!-- ~ !!Не работает без GULP или WebPuck (data-tippy-content="Подсказка") - использую дополнение TIPPI (раскоментирорвать в app.js  import"./script/tippy.js")-->
+										<!-- ~ !!Не работает без WebPuck (data-tippy-content="Подсказка") - использую дополнение TIPPI (раскоментирорвать в app.js  import"./script/tippy.js") -->
+										<!-- ~ Обернул "+" в span для того чтобы их потом поднять на верх z-index: 2 -->
+										<button type="button" data-tippy-content="Подсказка1" class="media-main-block__tip media-main-block__tip_1">
+											<span>+</span>
+										</button>
+										<button type="button" data-tippy-content="Подсказка2" class="media-main-block__tip media-main-block__tip_2">
+											<span>+</span>
+										</button>
+										<button type="button" data-tippy-content="Подсказка3" class="media-main-block__tip media-main-block__tip_3">
+											<span>+</span>
+										</button>
+										<!-- ! Моя переделка -->
 										<!-- ~ media-main-block__tip_1 (модификатор) -->
 										<!-- ~ Обернул "+" в span для того чтобы их потом поднять на верх z-index: 2 -->
-										<!-- ~ <div data-tippy-content="Подсказка1" class="media-main-block__tip media-main-block__tip_1"><span>+</span></div> -->
-										<!-- ~ <div data-tippy-content="Подсказка2" class="media-main-block__tip media-main-block__tip_2"><span>+</span></div> -->
-										<!-- ~ <div data-tippy-content="Подсказка3" class="media-main-block__tip media-main-block__tip_3"><span>+</span></div> -->
-										<!-- ! Моя переделка -->
-										<div class="media-main-block__tip media-main-block__tip_1"><div data-tippy-content="Подсказка 1" class="media-main-block__tip_block"><span>+</span></div></div>
+										<!-- <div class="media-main-block__tip media-main-block__tip_1"><div data-tippy-content="Подсказка 1" class="media-main-block__tip_block"><span>+</span></div></div>
 										<div class="media-main-block__tip media-main-block__tip_2"><div data-tippy-content="Подсказка 2" class="media-main-block__tip_block"><span>+</span></div></div>
-										<div class="media-main-block__tip media-main-block__tip_3"><div data-tippy-content="Подсказка 3" class="media-main-block__tip_block"><span>+</span></div></div>
+										<div class="media-main-block__tip media-main-block__tip_3"><div data-tippy-content="Подсказка 3" class="media-main-block__tip_block"><span>+</span></div></div> -->
 									</div>
 								</div>
 							</div>
@@ -77,7 +115,6 @@
 			</main>
 			@@include('html/_footer.htm',{})
 		</div>
-		@@include('html/_popup.htm',{})
-		@@include('html/_js.htm',{})
+		@@include('html/_popup.htm',{}) @@include('html/_js.htm',{})
 	</body>
 </html>
