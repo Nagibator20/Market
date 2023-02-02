@@ -7,7 +7,7 @@
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
 // Пример: { Navigation, Autoplay }
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, { Navigation, Pagination, Parallax } from 'swiper'
 /*
 Основниые модули слайдера:
 Navigation, Pagination, Autoplay, 
@@ -17,26 +17,49 @@ EffectFade, Lazy, Manipulation
 
 // Стили Swiper
 // Базовые стили
-import "../../scss/base/swiper.scss";
+import '../../scss/base/swiper.scss'
 // Полный набор стилей из scss/libs/swiper.scss
 // import "../../scss/libs/swiper.scss";
 // Полный набор стилей из node_modules
 // import 'swiper/css';
 
+// Добавление классов слайдерам
+// swiper главному блоку, swiper-wrapper оболочке, swiper-slide для слайдов
+// !!! в самом шаблоне этой функции НЕТ! пришлось дописывать (без нее не работает observer и неправильно располагает слайды (по вертикале, а не по горизонтали))
+function bildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)')
+	if (sliders) {
+		sliders.forEach((slider) => {
+			slider.parentElement.classList.add('swiper')
+			slider.classList.add('swiper-wrapper')
+			for (const slide of slider.children) {
+				slide.classList.add('swiper-slide')
+			}
+		})
+	}
+}
+
 // Инициализация слайдеров
 function initSliders() {
+	// Добавление классов слайдера
+	// при необходимости отключить
+	bildSliders()
+
 	// Перечень слайдеров
 	// Проверяем, есть ли слайдер на стронице
-	if (document.querySelector('.main-block__slider')) { // Указываем скласс нужного слайдера
+	if (document.querySelector('.main-block__slider')) {
+		// Указываем класс нужного слайдера
 		// Создаем слайдер
-		new Swiper('.main-block__slider', { // Указываем класс нужного слайдера Pagination, Navigation или другие.
+		new Swiper('.main-block__slider', {
+			// Указываем класс нужного слайдера Pagination, Navigation или другие.
 			// Подключаем модули слайдера
 			// для конкретного случая
-			modules: [Navigation, Pagination],
+			modules: [Navigation, Pagination, Parallax],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 0,
+			spaceBetween: 50,
+			parallax:true,
 			// autoHeight: true, //! закомментировал как в видео
 			speed: 800,
 
@@ -56,13 +79,12 @@ function initSliders() {
 			*/
 
 			// Пагинация
-			
+
 			pagination: {
 				// прописываю сюда класс из Html
-				el: '.control-main-block__dotts',
+				el: '.controll-main-block__dotts',
 				clickable: true,
 			},
-			
 
 			// Скроллбар
 			/*
@@ -101,19 +123,23 @@ function initSliders() {
 			},
 			*/
 			// События
-			on: {
+			// on: {
 
-			}
-		});
+			// }
+		})
 	}
 }
 // Скролл на базе слайдера (по классу swiper_scroll для оболочки слайдера)
 function initSlidersScroll() {
-	let sliderScrollItems = document.querySelectorAll('.swiper_scroll');
+	// Добавление классов слайдера
+	// при необходимости отключить
+	bildSliders()
+
+	let sliderScrollItems = document.querySelectorAll('.swiper_scroll')
 	if (sliderScrollItems.length > 0) {
 		for (let index = 0; index < sliderScrollItems.length; index++) {
-			const sliderScrollItem = sliderScrollItems[index];
-			const sliderScrollBar = sliderScrollItem.querySelector('.swiper-scrollbar');
+			const sliderScrollItem = sliderScrollItems[index]
+			const sliderScrollBar = sliderScrollItem.querySelector('.swiper-scrollbar')
 			const sliderScroll = new Swiper(sliderScrollItem, {
 				observer: true,
 				observeParents: true,
@@ -125,20 +151,20 @@ function initSlidersScroll() {
 				scrollbar: {
 					el: sliderScrollBar,
 					draggable: true,
-					snapOnRelease: false
+					snapOnRelease: false,
 				},
 				mousewheel: {
 					releaseOnEdges: true,
 				},
-			});
-			sliderScroll.scrollbar.updateSize();
+			})
+			sliderScroll.scrollbar.updateSize()
 		}
 	}
 }
 
-window.addEventListener("load", function (e) {
+window.addEventListener('load', function (e) {
 	// Запуск инициализации слайдеров
-	initSliders();
+	initSliders()
 	// Запуск инициализации скролла на базе слайдера (по классу swiper_scroll)
 	//initSlidersScroll();
-});
+})

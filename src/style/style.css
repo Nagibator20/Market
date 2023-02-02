@@ -1078,7 +1078,29 @@ body::after {
 }
 .main-block__body {
   display: grid;
+  align-items: start;
   grid-template-columns: 1fr 39.6875%;
+}
+.main-block__slider {
+  margin: 0 -1.875rem;
+  padding: 0 1.875rem;
+}
+.main-block__swiper:not(:last-child) {
+  margin-bottom: 1.875rem;
+}
+.controll-main-block {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.controll-main-block__dotts {
+  display: flex;
+  gap: 0.9375rem;
+}
+.controll-main-block__dotts .swiper-pagination-bullet {
+  height: 2px;
+  flex: 0 0 15px;
+  background-color: #fff;
 }
 .slide-main-block__content {
   color: #fff;
@@ -1112,7 +1134,7 @@ body::after {
 }
 .slide-main-block__text {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.5;
 }
 .media-main-block {

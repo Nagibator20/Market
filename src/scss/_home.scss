@@ -9,13 +9,19 @@
 	// .main-block__body
 	&__body {
 		display: grid;
+		align-items: start; //подняло "буллеты" в верх
 		grid-template-columns: 1fr percent(635, 1600); //percent -> mixin который вычисляет проценты (сколько процентов 635 от 1600)
 	}
 	// .main-block__slider
 	&__slider {
+		margin: 0 rem(-30); // срезалась часть тени кнопки пришлось добавить m-30 p30
+		padding: 0 rem(30);
 	}
 	// .main-block__swiper
 	&__swiper {
+		&:not(:last-child){
+			margin-bottom: rem(30);
+		}
 	}
 	// .main-block__slide
 	&__slide {
@@ -26,7 +32,38 @@
 	// .main-block__advantages
 	&__advantages {
 	}
+	// .main-block__controll
+	&__controll {
+	}
 }
+.controll-main-block {
+	display: flex;
+	align-items: center;
+	gap: rem(20);
+	// .controll-main-block__dotts
+	&__dotts {
+		display: flex;
+		gap: rem(15);
+		//! класс скопировал с отладчика Chrome, эти классы добавляются slider'ом автоматически (сколько слайдов столько и .swiper-pagination-bullet (вроде как они создаются в span))
+		.swiper-pagination-bullet{
+			height: 2px;
+			flex: 0 0 15px;
+			background-color: #fff;
+		}
+	}
+	// .controll-main-block__fraction
+	&__fraction {
+	}
+}
+.fraction-controll {
+	// .fraction-controll__current
+	&__current {
+	}
+	// .fraction-controll__all
+	&__all {
+	}
+}
+
 .slide-main-block {
 	// .slide-main-block__content
 	&__content {
@@ -61,7 +98,7 @@
 	// .slide-main-block__text
 	&__text {
 		color: rgba(255, 255, 255, 0.7);
-		font-size: 20px;
+		font-size: rem(20);
 		line-height: math.div(30, 20);
 	}
 	// .slide-main-block__button
@@ -114,8 +151,8 @@
 		position: absolute;
 		cursor: pointer;
 		transition: transform 0.3s ease 0s;
-		@media(any-hover:hover){
-			&:hover{
+		@media (any-hover: hover) {
+			&:hover {
 				transform: rotate(-180deg);
 			}
 		}
@@ -135,7 +172,7 @@
 			transform: scale(1.6);
 			opacity: 0.5;
 		}
-		span{
+		span {
 			position: relative;
 			z-index: 2;
 			color: #fff;
@@ -168,124 +205,6 @@
 			right: percent(28, 447);
 		}
 	}
-
-	// !!! Моя переделка работает без Webpack!!!
-	// // .media-main-block__tip
-	// &__tip {
-	// 	width: rem(20);
-	// 	height: rem(20);
-	// 	position: absolute;
-	// 	cursor: pointer;
-	// 	// transition: all 0.3s ease 0s; //! крутится весь блок, в месте с подсказкой. Перенес в span!!
-	// 	// @media (any-hover: hover) { //! -' '-
-	// 	// 	// &:hover {
-	// 	// 	// 	// transform: rotate(-180deg);
-	// 	// 	// 	// opacity: 0;
-	// 	// 	// }
-	// 	// }
-	// 	&::before,
-	// 	&::after {
-	// 		content: '';
-	// 		border-radius: 50%;
-	// 		background-color: #e8aa31;
-	// 		position: absolute;
-	// 		width: 100%;
-	// 		height: 100%;
-	// 		top: 0;
-	// 		left: 0;
-	// 	}
-	// 	&::after {
-	// 		transform: scale(1.6);
-	// 		opacity: 0.5;
-	// 	}
-	// 	span {
-	// 		// !--Моя переделка-----------------------(можно перенести (пока не знаю как правильнее) в _block)
-	// 		position: relative; // ! Сравнить с видео
-	// 		z-index: 2;
-	// 		color: #fff;
-	// 		font-weight: 600;
-	// 		font-size: rem(20);
-	// 		position: absolute; // ! Сравнить с видео
-	// 		width: 100%;
-	// 		height: 100%;
-	// 		top: 0;
-	// 		left: 0;
-	// 		display: flex;
-	// 		justify-content: center;
-	// 		align-items: center;
-	// 		//!----------------------------Тут-------------------
-	// 		transition: all 0.3s ease 0s;
-	// 		@media (any-hover: hover) {
-	// 			&:hover {
-	// 				transform: rotate(-180deg);
-	// 			}
-	// 		}
-	// 	}
-	// 	// .media-main-block__tip_block
-	// 	// !--Моя переделка---------------------(добавил div с классом .media-main-block__tip_block !!!)
-	// 	&_block {
-	// 		// position: relative;
-	// 		// z-index: 2;
-	// 		// color: #fff;
-	// 		// font-weight: 600;
-	// 		// font-size: rem(20);
-	// 		//  position: absolute;
-	// 		// width: 100%;
-	// 		// height: 100%;
-	// 		// top: 0;
-	// 		// left: 0;
-	// 		// display: flex;
-	// 		// justify-content: center;
-	// 		// align-items: center;
-	// 		&::after {
-	// 			content: attr(data-tippy-content);
-	// 			position: absolute;
-	// 			left: 50%;
-	// 			top: rem(-30);
-	// 			transform: translateX(-50%);
-	// 			color: #000;
-	// 			background-color: #e8aa31;
-	// 			border-radius: rem(3);
-	// 			padding: rem(2) rem(5);
-	// 			font-size: rem(12);
-	// 			justify-content: center;
-	// 			align-items: center;
-	// 			white-space: nowrap;
-	// 			// border: 10px solid;//!
-	// 			// border-color: #0000 #0000 #000 #0000 ; //! должна была быть стрелочка - но что то пошло не так))
-	// 			opacity: 0;
-	// 			visibility: hidden;
-	// 			transition: all 0.3s ease 0s;
-	// 		}
-	// 		@media (any-hover: hover) {
-	// 			&:hover {
-	// 				&::after {
-	// 					//!!! если скрываешь псевдо элемент - то и в haver нужно добавлять псевдо элемент!!!!!!!!!!!!!
-	// 					opacity: 1;
-	// 					visibility: visible;
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-
-	// 	// .media-main-block__tip_1
-	// 	&_1 {
-	// 		//! Расположение "абсолютных" объектов нужно делать относительно -> в процентах, для того, что бы если объект (родитель) будет меняться по габаритам "абсолютные" объекты тоже будут менять свое расположение.
-	// 		// Размещаю "+", в процентном соотношении относительно габаритов картинки
-	// 		top: percent(186, 500); // 500 высота, 186 отступ от верхнего края
-	// 		left: percent(72, 447); // 447 ширина, 72 отступ от левого края
-	// 	}
-	// 	// .media-main-block__tip_2
-	// 	&_2 {
-	// 		top: percent(57, 500);
-	// 		right: percent(13, 447);
-	// 	}
-	// 	// .media-main-block__tip_3
-	// 	&_3 {
-	// 		bottom: percent(115, 500);
-	// 		right: percent(28, 447);
-	// 	}
-	// }
 }
 .advantages-main {
 	// .advantages-main__item
