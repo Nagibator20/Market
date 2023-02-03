@@ -26,7 +26,7 @@ import '../../scss/base/_swiper.scss'
 
 // Добавление классов слайдерам
 // swiper главному блоку, swiper-wrapper оболочке, swiper-slide для слайдов
-// !!! в самом шаблоне этой функции НЕТ! пришлось дописывать (без нее не работает observer и неправильно располагает слайды (по вертикале, а не по горизонтали)) 
+// !!! в самом шаблоне этой функции НЕТ! пришлось дописывать (без нее не работает observer и неправильно располагает слайды (по вертикале, а не по горизонтали))
 function bildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)')
 	if (sliders) {
@@ -60,16 +60,15 @@ function initSliders() {
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 50,
-			parallax:true,
+			parallax: true,
 			// autoHeight: true, //! закомментировал как в видео
 			speed: 800,
 
 			//touchRatio: 0,
 			//simulateTouch: false,
-			//loop: true,
+			loop: true,
 			//preloadImages: false,
 			//lazy: true,
-
 
 			// Эффекты
 			// effect: 'fade',
@@ -77,7 +76,6 @@ function initSliders() {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-
 
 			// Пагинация
 
@@ -125,11 +123,25 @@ function initSliders() {
 			*/
 			// События
 			on: {
-				init:function  (swiper){
-				console.log(swiper)
-				}
-				
-			}
+				//! Кастомная фракция (счетчик слайдов)
+				init: function (swiper) {
+					//получаю объект
+					const allSlides = document.querySelector('.fraction-controll__all')
+					//! смотрю что находится в swiper
+					console.log(swiper)
+					//! swiper.slides.length -> консоль хрома->Swiper->sliders<-(массив из моих слайдов)
+					allSlides.innerHTML = swiper.slides.length < 10 ? `0${swiper.slides.length}` : swiper.slides.length
+					console.log(allSlides)
+				},
+				slideChange: function (swiper) {
+					//получаю объект
+					const currentSlide = document.querySelector('.fraction-controll__current')
+					//! смотрю что находится в swiper
+					console.log(swiper)
+					//! swiper.slides.length -> консоль хрома->Swiper->sliders<-(массив из моих слайдов)
+					currentSlide.innerHTML = swiper.realIndex + 1 < 10 ? `0${swiper.realIndex + 1}` : swiper.realIndex + 1
+				},
+			},
 		})
 	}
 }
