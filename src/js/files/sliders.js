@@ -7,7 +7,7 @@
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
 // Пример: { Navigation, Autoplay }
-import Swiper, { Navigation, Pagination, Parallax } from 'swiper'
+import Swiper, { Navigation, Pagination, Parallax, Autoplay } from 'swiper'
 /*
 Основниые модули слайдера:
 Navigation, Pagination, Autoplay, 
@@ -17,7 +17,8 @@ EffectFade, Lazy, Manipulation
 
 // Стили Swiper
 // Базовые стили
-import '../../scss/base/swiper.scss'
+//!!!! добавил  "_" _swiper.scss (файлы тоже переименовал в base и в libs)
+import '../../scss/base/_swiper.scss'
 // Полный набор стилей из scss/libs/swiper.scss
 // import "../../scss/libs/swiper.scss";
 // Полный набор стилей из node_modules
@@ -25,7 +26,7 @@ import '../../scss/base/swiper.scss'
 
 // Добавление классов слайдерам
 // swiper главному блоку, swiper-wrapper оболочке, swiper-slide для слайдов
-// !!! в самом шаблоне этой функции НЕТ! пришлось дописывать (без нее не работает observer и неправильно располагает слайды (по вертикале, а не по горизонтали))
+// !!! в самом шаблоне этой функции НЕТ! пришлось дописывать (без нее не работает observer и неправильно располагает слайды (по вертикале, а не по горизонтали)) 
 function bildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)')
 	if (sliders) {
@@ -54,7 +55,7 @@ function initSliders() {
 			// Указываем класс нужного слайдера Pagination, Navigation или другие.
 			// Подключаем модули слайдера
 			// для конкретного случая
-			modules: [Navigation, Pagination, Parallax],
+			modules: [Navigation, Pagination, Parallax, Autoplay],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
@@ -69,14 +70,14 @@ function initSliders() {
 			//preloadImages: false,
 			//lazy: true,
 
-			/*
+
 			// Эффекты
-			effect: 'fade',
+			// effect: 'fade',
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-			*/
+
 
 			// Пагинация
 
@@ -123,9 +124,12 @@ function initSliders() {
 			},
 			*/
 			// События
-			// on: {
-
-			// }
+			on: {
+				init:function  (swiper){
+				console.log(swiper)
+				}
+				
+			}
 		})
 	}
 }

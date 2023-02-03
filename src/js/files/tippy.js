@@ -7,7 +7,8 @@ import { flsModules } from "./modules.js";
 import tippy from 'tippy.js';
 
 // Подключение cтилей из src/scss/libs
-import "../../scss/libs/tippy.scss";
+//!!!! добавил  "_" _tippy.scss (файлы тоже переименовал в libs)
+import "../../scss/libs/_tippy.scss";
 // Подключение cтилей из node_modules
 // import 'tippy.js/dist/tippy.css';
 

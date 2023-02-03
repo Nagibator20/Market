@@ -19,7 +19,7 @@
 	}
 	// .main-block__swiper
 	&__swiper {
-		&:not(:last-child){
+		&:not(:last-child) {
 			margin-bottom: rem(30);
 		}
 	}
@@ -37,30 +37,82 @@
 	}
 }
 .controll-main-block {
-	display: flex;
+	display: inline-grid;
+	grid-auto-flow: column;
 	align-items: center;
 	gap: rem(20);
 	// .controll-main-block__dotts
 	&__dotts {
-		display: flex;
+		display: inline-grid;
+		grid-auto-flow: column;
 		gap: rem(15);
 		//! класс скопировал с отладчика Chrome, эти классы добавляются slider'ом автоматически (сколько слайдов столько и .swiper-pagination-bullet (вроде как они создаются в span))
-		.swiper-pagination-bullet{
-			height: 2px;
-			flex: 0 0 15px;
-			background-color: #fff;
+		.swiper-pagination-bullet {
+			//когда булет неактивный
+			cursor: pointer;
+			height: rem(30);
+			width: rem(18);
+			position: relative;
+			transition: all 0.3s ease 0s;
+			//! Прописал в after для того что бы увеличить область клика (удобнее для мобильных устройств)
+			&::after {
+				content: '';
+				height: rem(2);
+				width: 100%;
+				top: 50%; //центрирую
+				transform: translate(0px, -50%); //опускаю на 50% от ширины (так будет точно по центру)
+				position: absolute;
+				background-color: #fff;
+			}
+			&::before {
+				//! рисую круг на булетах
+				content: '';
+				background-color: #e8aa31;
+				width: rem(10);
+				height: rem(10);
+				top: 50%;
+				left: 0; //!для анимации с лево на право ("1) - какие завязаны
+				border-radius: 50%; //центрирую
+				transform: translate(0px, -50%); //опускаю на 50% от ширины (так будет точно по центру)
+				position: absolute;
+				opacity: 0; //!скрываю круг opacity 1 в -> active -> before
+			}
+		}
+		.swiper-pagination-bullet-active {
+			//когда булет активный
+			width: rem(36); //активный в 2 раза длинней
+			&::after {
+				//! Прописал цвет в after потому что увеличивал область клика (смотри выше)
+				background-color: #e8aa31;
+			}
+			&::before {
+				opacity: 1; //!тут
+				transition: left 4s linear 0s; //!("2) //!!анимация работает только с left (linear - линейная анимация)
+				left: rem(26); //!("3)
+			}
+			// !
 		}
 	}
 	// .controll-main-block__fraction
 	&__fraction {
+
 	}
 }
 .fraction-controll {
+	//!!! сод для счетчика в js->files->sliders.js -> //События оn:{...}
+	display: flex;
+	color: #fff;
+	align-items: flex-end;
+	font-weight: 600;
+	letter-spacing: 0.2em; //расстояние между буквами
 	// .fraction-controll__current
 	&__current {
+		color: #e8aa31;
+		font-size: rem(24);
 	}
 	// .fraction-controll__all
 	&__all {
+		font-size: rem(18);
 	}
 }
 
