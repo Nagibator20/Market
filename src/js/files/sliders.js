@@ -66,12 +66,13 @@ function initSliders() {
 
 			//touchRatio: 0,
 			//simulateTouch: false,
-			loop: true,
+			loop: true,//! смена слайдов по кругу
 			//preloadImages: false,
 			//lazy: true,
 
 			// Эффекты
 			// effect: 'fade',
+			//! автоматическая смена слайда
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
