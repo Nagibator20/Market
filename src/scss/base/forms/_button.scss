@@ -2,7 +2,9 @@
 // Снипет (HTML): btn
 
 .button {
-	display: inline-flex;
+	display: inline-flex;// так 	text-align: center; не сработает
+	display: inline-block;// так сработает
+	text-align: center;
 	padding: 0px 0px;
 	background: #e8aa31;
 	box-shadow: 0px 4px 20px rgba(232,170,49,0.43);

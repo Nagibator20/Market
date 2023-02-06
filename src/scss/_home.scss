@@ -10,7 +10,14 @@
 	&__body {
 		display: grid;
 		align-items: start; //подняло "буллеты" в верх
-		grid-template-columns: 1fr percent(635, 1600); //percent -> mixin который вычисляет проценты (сколько процентов 635 от 1600)
+		row-gap: rem(40);
+		// grid-template-columns: 1fr percent(635, 1600); //percent -> mixin который вычисляет проценты (сколько процентов 635 от 1600) //~ a1
+		&:not(:last-child) {
+			@include adaptiveValue('margin-bottom', 43, 30);
+		}
+		@media (min-width:$tablet) {
+			grid-template-columns: 1fr percent(635, 1600) //если шире планшета //~ a1 
+		}
 	}
 	// .main-block__slider
 	&__slider {
@@ -95,7 +102,6 @@
 	}
 	// .controll-main-block__fraction
 	&__fraction {
-
 	}
 }
 .fraction-controll {
@@ -115,12 +121,14 @@
 		font-size: rem(18);
 	}
 }
-
 .slide-main-block {
 	// .slide-main-block__content
 	&__content {
 		color: #fff;
-		padding: 0 rem(40) 0 0;
+		// padding: 0 rem(40) 0 0; //этот отступ безопасности нужен на устройствах шире 992рх //~ a3
+		@media (min-width: $tablet) {
+			padding: 0 rem(40) 0 0; //~ a3
+		}
 		&:not(:last-child) {
 			// отступ до кнопки "Подробнее"
 			@include adaptiveValue('margin-bottom', 60, 30);
@@ -130,7 +138,8 @@
 	&__title {
 		font-weight: bold;
 		letter-spacing: 0.03em;
-		font-size: rem(36);
+		// font-size: rem(36); //~ a2
+		@include adaptiveValue("font-size", 36, 22, 992, 320, 1); //адаптивно меняю шрифт от 36 до 22 начнет меняться от 992рх до 320рх //~ a2
 		//! 46 <- В макете сайта, 36 величина шрифта (данное действие позволяет при изменении размера шрифта подстраивать сразу lin-height)
 		line-height: math.div(46, 36);
 		&:not(:last-child) {
@@ -144,17 +153,23 @@
 		&:not(:last-child) {
 			margin-bottom: em(30, 36);
 		}
-		font-size: rem(36);
+		// font-size: rem(36);//~ a2
+		@include adaptiveValue("font-size", 36, 22, 992, 320, 1);//~ a2
 		line-height: math.div(46, 36);
 	}
 	// .slide-main-block__text
 	&__text {
 		color: rgba(255, 255, 255, 0.7);
-		font-size: rem(20);
+		// font-size: rem(20); //~ a2
+		@include adaptiveValue("font-size", 20, 16, 992, 320, 1); //~ a2
 		line-height: math.div(30, 20);
 	}
 	// .slide-main-block__button
 	&__button {
+		// если мобильный то кнопка на всю ширину
+		@media (max-width: $mobileSmall) {
+			width: 100%;
+		}
 	}
 }
 .media-main-block {
@@ -169,11 +184,12 @@
 	}
 	// .media-main-block__image
 	&__image {
-		position: relative;
+		// position: relative;
 		&::before {
 			content: '';
-			width: 423px;
-			height: 423px;
+			//! для того что бы круг менял размер вместе с картинкой, высчитываю его размеры в процентах
+			width: percent(423, 449); //! тут
+			padding-bottom: percent(423, 449);//!тут
 			border-radius: 50%;
 			border: 2px solid rgba(255, 255, 255, 0.5);
 			position: absolute;
@@ -182,6 +198,7 @@
 			transform: translate(percent(131, 423), 0px); // высчитываю на сколько нужно сдвинуть круг в процентном соотношении (131px в макете 423 диаметр)
 		}
 		img {
+			max-width: 100%; // при изменении размера экрана будет меняться размер картинки
 			// обращаюсь к картинке для того чтобы ею закрыть часть круга
 			position: relative;
 			z-index: 2;
@@ -259,13 +276,37 @@
 	}
 }
 .advantages-main {
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	gap: rem(20);
+	justify-content: space-between; //потому что 2 крайних объекта прижаты к полям
 	// .advantages-main__item
+	@media(max-width:$tablet){
+		grid-template-columns: repeat(2, 1fr); //меняю сетку иконок //~ a4
+		justify-items: center;
+		row-gap: rem(30);
+	}
+	@media(max-width:$mobile){
+		grid-template-columns: repeat(1, 1fr); //меняю сетку иконок //~ a4
+		justify-items: center;
+		row-gap: rem(30);
+	}
 	&__item {
+		display: inline-grid;
+		gap: rem(17);
+		text-align: center; // от центровались и иконки
+		max-width: rem(290);
+		grid-template-rows: rem(77) auto; // выравниваю текст под иконками (из за того что иконки разного размера текст то чуть выше то чуть ниже)
 	}
 	// .advantages-main__icon
 	&__icon {
+		align-self: center; // иконки по центру блока
 	}
 	// .advantages-main__text
 	&__text {
+		color: #fff;
+		font-weight: 600;
+		font-size: rem(16);
+		line-height: math.div(32, 20);
 	}
 }

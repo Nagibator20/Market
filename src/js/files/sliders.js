@@ -128,10 +128,16 @@ function initSliders() {
 				init: function (swiper) {
 					//получаю объект
 					const allSlides = document.querySelector('.fraction-controll__all')
+
+					//! если включить loop то slider добавляет классы дупликаты (.swiper-slide-duplicate) по этому нужно брать количество объектов по классу (.slide-main-block) без учета класса дупликата (строю запрос :not(.swiper-slide-duplicate)!!!). И этот массив использую для получение общего количества
+					const allSlidesItem = document.querySelectorAll('.slide-main-block:not(.swiper-slide-duplicate)')
+					allSlides.innerHTML = allSlidesItem.length < 10 ? `0${allSlidesItem.length}` : allSlidesItem.length
+
+
 					//! смотрю что находится в swiper
 					console.log(swiper)
 					//! swiper.slides.length -> консоль хрома->Swiper->sliders<-(массив из моих слайдов)
-					allSlides.innerHTML = swiper.slides.length < 10 ? `0${swiper.slides.length}` : swiper.slides.length
+					// allSlides.innerHTML = swiper.slides.length < 10 ? `0${swiper.slides.length}` : swiper.slides.length
 					console.log(allSlides)
 				},
 				slideChange: function (swiper) {

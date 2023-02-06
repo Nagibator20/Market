@@ -196,6 +196,8 @@ body {
 
 .button {
   display: inline-flex;
+  display: inline-block;
+  text-align: center;
   padding: 0px 0px;
   background: #e8aa31;
   box-shadow: 0px 4px 20px rgba(232, 170, 49, 0.43);
@@ -1079,7 +1081,22 @@ body::after {
 .main-block__body {
   display: grid;
   align-items: start;
-  grid-template-columns: 1fr 39.6875%;
+  row-gap: 2.5rem;
+}
+@supports (margin-bottom: clamp( 1.875rem , 1.675rem  +  1vw , 2.6875rem )) {
+  .main-block__body:not(:last-child) {
+    margin-bottom: clamp( 1.875rem , 1.675rem  +  1vw , 2.6875rem );
+  }
+}
+@supports not (margin-bottom: clamp( 1.875rem , 1.675rem  +  1vw , 2.6875rem )) {
+  .main-block__body:not(:last-child) {
+    margin-bottom: calc(1.875rem + 0.8125 * (100vw - 20rem) / 81.25);
+  }
+}
+@media (min-width: 61.99875em) {
+  .main-block__body {
+    grid-template-columns: 1fr 39.6875%;
+  }
 }
 .main-block__slider {
   margin: 0 -1.875rem;
@@ -1155,7 +1172,11 @@ body::after {
 
 .slide-main-block__content {
   color: #fff;
-  padding: 0 2.5rem 0 0;
+}
+@media (min-width: 61.99875em) {
+  .slide-main-block__content {
+    padding: 0 2.5rem 0 0;
+  }
 }
 @supports (margin-bottom: clamp( 1.875rem , 1.4134615385rem  +  2.3076923077vw , 3.75rem )) {
   .slide-main-block__content:not(:last-child) {
@@ -1170,24 +1191,57 @@ body::after {
 .slide-main-block__title {
   font-weight: bold;
   letter-spacing: 0.03em;
-  font-size: 2.25rem;
   line-height: 1.2777777778;
+}
+@supports (font-size: clamp( 1.375rem , 0.9583333333rem  +  2.0833333333vw , 2.25rem )) {
+  .slide-main-block__title {
+    font-size: clamp( 1.375rem , 0.9583333333rem  +  2.0833333333vw , 2.25rem );
+  }
+}
+@supports not (font-size: clamp( 1.375rem , 0.9583333333rem  +  2.0833333333vw , 2.25rem )) {
+  .slide-main-block__title {
+    font-size: calc(1.375rem + 0.875 * (100vw - 20rem) / 42);
+  }
 }
 .slide-main-block__title:not(:last-child) {
   margin-bottom: 0.4166666667em;
 }
 .slide-main-block__sub-title {
-  font-size: 2.25rem;
   line-height: 1.2777777778;
 }
 .slide-main-block__sub-title:not(:last-child) {
   margin-bottom: 0.8333333333em;
 }
+@supports (font-size: clamp( 1.375rem , 0.9583333333rem  +  2.0833333333vw , 2.25rem )) {
+  .slide-main-block__sub-title {
+    font-size: clamp( 1.375rem , 0.9583333333rem  +  2.0833333333vw , 2.25rem );
+  }
+}
+@supports not (font-size: clamp( 1.375rem , 0.9583333333rem  +  2.0833333333vw , 2.25rem )) {
+  .slide-main-block__sub-title {
+    font-size: calc(1.375rem + 0.875 * (100vw - 20rem) / 42);
+  }
+}
 .slide-main-block__text {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 1.25rem;
   line-height: 1.5;
 }
+@supports (font-size: clamp( 1rem , 0.880952381rem  +  0.5952380952vw , 1.25rem )) {
+  .slide-main-block__text {
+    font-size: clamp( 1rem , 0.880952381rem  +  0.5952380952vw , 1.25rem );
+  }
+}
+@supports not (font-size: clamp( 1rem , 0.880952381rem  +  0.5952380952vw , 1.25rem )) {
+  .slide-main-block__text {
+    font-size: calc(1rem + 0.25 * (100vw - 20rem) / 42);
+  }
+}
+@media (max-width: 29.99875em) {
+  .slide-main-block__button {
+    width: 100%;
+  }
+}
+
 .media-main-block {
   display: flex;
   justify-content: center;
@@ -1197,13 +1251,10 @@ body::after {
 .media-main-block__body {
   position: relative;
 }
-.media-main-block__image {
-  position: relative;
-}
 .media-main-block__image::before {
   content: "";
-  width: 423px;
-  height: 423px;
+  width: 94.2093541203%;
+  padding-bottom: 94.2093541203%;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.5);
   position: absolute;
@@ -1212,6 +1263,7 @@ body::after {
   transform: translate(30.9692671395%, 0px);
 }
 .media-main-block__image img {
+  max-width: 100%;
   position: relative;
   z-index: 2;
 }
@@ -1275,4 +1327,41 @@ body::after {
 .media-main-block__tip_3 {
   bottom: 23%;
   right: 6.2639821029%;
+}
+
+.advantages-main {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 1.25rem;
+  justify-content: space-between;
+}
+@media (max-width: 61.99875em) {
+  .advantages-main {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    row-gap: 1.875rem;
+  }
+}
+@media (max-width: 47.99875em) {
+  .advantages-main {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    row-gap: 1.875rem;
+  }
+}
+.advantages-main__item {
+  display: inline-grid;
+  gap: 1.0625rem;
+  text-align: center;
+  max-width: 18.125rem;
+  grid-template-rows: 4.8125rem auto;
+}
+.advantages-main__icon {
+  align-self: center;
+}
+.advantages-main__text {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.6;
 }
