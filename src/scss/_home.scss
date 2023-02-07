@@ -1,7 +1,7 @@
 .main-block {
 	background: url('../img/mainpage/main-block/bg.jpg') center / cover no-repeat;
-	@include adaptiveValue('padding-top', 40, 20);
-	@include adaptiveValue('padding-bottom', 60, 20);
+	@include adaptiveValue('padding-top', 40, 40);
+	@include adaptiveValue('padding-bottom', 60, 40);
 	// background: $mainColor;
 	// .main-block__container
 	&__container {
@@ -15,8 +15,8 @@
 		&:not(:last-child) {
 			@include adaptiveValue('margin-bottom', 43, 30);
 		}
-		@media (min-width:$tablet) {
-			grid-template-columns: 1fr percent(635, 1600) //если шире планшета //~ a1 
+		@media (min-width: $tablet) {
+			grid-template-columns: 1fr percent(635, 1600); //если шире планшета //~ a1
 		}
 	}
 	// .main-block__slider
@@ -139,7 +139,7 @@
 		font-weight: bold;
 		letter-spacing: 0.03em;
 		// font-size: rem(36); //~ a2
-		@include adaptiveValue("font-size", 36, 22, 992, 320, 1); //адаптивно меняю шрифт от 36 до 22 начнет меняться от 992рх до 320рх //~ a2
+		@include adaptiveValue('font-size', 36, 22, 992, 320, 1); //адаптивно меняю шрифт от 36 до 22 начнет меняться от 992рх до 320рх //~ a2
 		//! 46 <- В макете сайта, 36 величина шрифта (данное действие позволяет при изменении размера шрифта подстраивать сразу lin-height)
 		line-height: math.div(46, 36);
 		&:not(:last-child) {
@@ -154,14 +154,14 @@
 			margin-bottom: em(30, 36);
 		}
 		// font-size: rem(36);//~ a2
-		@include adaptiveValue("font-size", 36, 22, 992, 320, 1);//~ a2
+		@include adaptiveValue('font-size', 36, 22, 992, 320, 1); //~ a2
 		line-height: math.div(46, 36);
 	}
 	// .slide-main-block__text
 	&__text {
 		color: rgba(255, 255, 255, 0.7);
 		// font-size: rem(20); //~ a2
-		@include adaptiveValue("font-size", 20, 16, 992, 320, 1); //~ a2
+		@include adaptiveValue('font-size', 20, 16, 992, 320, 1); //~ a2
 		line-height: math.div(30, 20);
 	}
 	// .slide-main-block__button
@@ -189,7 +189,7 @@
 			content: '';
 			//! для того что бы круг менял размер вместе с картинкой, высчитываю его размеры в процентах
 			width: percent(423, 449); //! тут
-			padding-bottom: percent(423, 449);//!тут
+			padding-bottom: percent(423, 449); //!тут
 			border-radius: 50%;
 			border: 2px solid rgba(255, 255, 255, 0.5);
 			position: absolute;
@@ -275,18 +275,20 @@
 		}
 	}
 }
+
+//! Иконки==============================
 .advantages-main {
 	display: grid;
 	grid-template-columns: repeat(4, auto);
 	gap: rem(20);
 	justify-content: space-between; //потому что 2 крайних объекта прижаты к полям
 	// .advantages-main__item
-	@media(max-width:$tablet){
+	@media (max-width: $tablet) {
 		grid-template-columns: repeat(2, 1fr); //меняю сетку иконок //~ a4
 		justify-items: center;
 		row-gap: rem(30);
 	}
-	@media(max-width:$mobile){
+	@media (max-width: $mobile) {
 		grid-template-columns: repeat(1, 1fr); //меняю сетку иконок //~ a4
 		justify-items: center;
 		row-gap: rem(30);
@@ -308,5 +310,133 @@
 		font-weight: 600;
 		font-size: rem(16);
 		line-height: math.div(32, 20);
+	}
+}
+//! Карточки============================
+// .page { //! Перенес в style.scss
+// 	// .page__catalog-cards
+// //	&__catalog-cards {
+// 	}
+// }
+.catalog-cards {
+	@include adaptiveValue('padding-top', 100, 40);
+	@include adaptiveValue('padding-bottom', 70, 40);
+	// .catalog-cards__container
+	&__container {
+		display: grid;
+		gap: rem(30);
+		@media (min-width:$mobileSmall) {
+			grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));//!адаптивные габариты контейнера			
+		}
+	}
+	// .catalog-cards__item
+	&__item {
+	}
+}
+.item-catalog-cards {
+	overflow: hidden;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+	position: relative;
+	min-height: rem(290);
+	transition: 	box-shadow 0.3s ease 0s;
+	@media (any-hover:hover) {
+		&:hover{
+			box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+		}
+	}
+	// .item-catalog-cards__body
+	&__body {
+		position: relative;
+		z-index: 2;
+		@include adaptiveValue("padding", 30, 20)
+		// 	//!!!! Если разрешение меньше мобильного то эти параметры будут работать если больше - то нет
+		// //	&:not(:last-child){
+		// //		margin-bottom: rem(20);// отступ от низа списка до картинки
+		// //	}
+		// //}
+	}
+	// .item-catalog-cards__title
+	&__title {
+		&:not(:last-child) {
+			margin-bottom: em(30, 24);
+		}
+	}
+	// .item-catalog-cards__link-title
+	&__link-title {
+		font-weight: 600;
+		font-size: rem(24);
+		line-height: math.div(34, 24); //!
+		display: inline-block; //подчеркивание будет растягиваться на ширину блока, а не на весь экран
+		&::after {
+			content: '';
+			width: rem(70);
+			height: rem(2);
+			display: block;
+			margin: rem(15) 0px 0px 0px;
+			background-color: #e8aa31;
+			transition: width 0.8s ease 0s;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				&::after {
+					width: 100%;
+				}
+			}
+		}
+	}
+	// .item-catalog-cards__list
+	&__list {
+	}
+	// .item-catalog-cards__item
+	&__item {
+		position: relative;
+		padding: 0 0 0 rem(20);
+		&::before {
+			content: '';
+			width: rem(6);
+			height: rem(6);
+			background-color: #e8aa31;
+			border-radius: 50%;
+			position: absolute;
+			left: 0;
+			top: em(8, 18);
+		}
+		&:not(:last-child) {
+			margin-bottom: rem(10); // отступ кроме последнего
+		}
+	}
+	// .item-catalog-cards__link
+	&__link {
+		font-size: rem(18);
+		line-height: math.div(24, 18); //!!!!! ОДНО ОТСТУП ДРУГОЕ (либо высота блока, либо р-р текста) делится большее на меньшее
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	// .item-catalog-cards__image
+	&__image {
+		//! переместил в media для того что бы картинка была ниже текста при мобильном разрешении
+		// position: absolute;
+		// height: 100%;
+		// top: 0;
+		// right: 0;
+		width: 100%;
+		text-align: right;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+		img {
+			max-width: 100%;
+		}
+		@media (min-width: $mobileSmall) {
+			//! сюда
+			//!!!! Если разрешение больше мобильного то эти параметры будут работать если меньше - то нет
+			position: absolute;
+			height: 100%;
+			top: 0;
+			right: 0;
+		}
 	}
 }

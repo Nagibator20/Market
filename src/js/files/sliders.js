@@ -66,17 +66,17 @@ function initSliders() {
 
 			//touchRatio: 0,
 			//simulateTouch: false,
-			loop: true,//! смена слайдов по кругу
+			// loop: true,//! смена слайдов по кругу //!!! Раскоментировать
 			//preloadImages: false,
 			//lazy: true,
 
 			// Эффекты
 			// effect: 'fade',
-			//! автоматическая смена слайда
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
+			//! автоматическая смена слайда //!!! Раскоментировать
+			// autoplay: {
+			// 	delay: 3000,
+			// 	disableOnInteraction: false,
+			// },
 
 			// Пагинация
 
