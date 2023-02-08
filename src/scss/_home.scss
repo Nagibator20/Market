@@ -326,7 +326,8 @@
 		display: grid;
 		gap: rem(30);
 		@media (min-width:$mobileSmall) {
-			grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));//!адаптивные габариты контейнера			
+			//! работает если разрешение экрана больше мобильного
+			grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));//!! Адаптивные габариты ячеек "контейнера"(будет меняться количество плиток) (repeat((количество)auto-fit, (размер)minmax(мин значение, мах значение)))
 		}
 	}
 	// .catalog-cards__item
@@ -427,6 +428,7 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: flex-end;
+		transform: translate(0px,8%); //сдвинул картинки чутка в низ -> заезжали на текст
 		img {
 			max-width: 100%;
 		}
@@ -440,3 +442,5 @@
 		}
 	}
 }
+//! Карточки товара=====================
+// Стили вынесены в отдельный файл -> _products-slider.scss

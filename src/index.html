@@ -5,6 +5,7 @@
 		<div class="wrapper">
 			@@include('html/_header.htm',{})
 			<main class="page page_home">
+				<!-- ! Слайдер и картинка с подсказками -->
 				<section class="page__main-block main-block">
 					<div class="main-block__container">
 						<div class="main-block__body">
@@ -112,8 +113,9 @@
 						</div>
 					</div>
 				</section>
+				<!-- ! Карточки каталога-->
 				<section class="page__catalog-cards catalog-cards">
-					<!--! Ограничивающий контейнер -->
+					<!-- Ограничивающий контейнер -->
 					<div class="catalog-cards__container">
 						<div class="catalog-cards__item item-catalog-cards">
 							<div class="item-catalog-cards__body">
@@ -127,7 +129,7 @@
 								</ul>
 							</div>
 							<div class="item-catalog-cards__image">
-								<img src="@img/mainpage/catalog-cards/01.jpg" alt="картинка">
+								<img src="@img/mainpage/catalog-cards/01.jpg" alt="картинка" />
 							</div>
 						</div>
 						<div class="catalog-cards__item item-catalog-cards">
@@ -142,7 +144,7 @@
 								</ul>
 							</div>
 							<div class="item-catalog-cards__image">
-								<img src="@img/mainpage/catalog-cards/02.jpg" alt="картинка">
+								<img src="@img/mainpage/catalog-cards/02.jpg" alt="картинка" />
 							</div>
 						</div>
 						<div class="catalog-cards__item item-catalog-cards">
@@ -157,7 +159,7 @@
 								</ul>
 							</div>
 							<div class="item-catalog-cards__image">
-								<img src="@img/mainpage/catalog-cards/03.jpg" alt="картинка">
+								<img src="@img/mainpage/catalog-cards/03.jpg" alt="картинка" />
 							</div>
 						</div>
 						<div class="catalog-cards__item item-catalog-cards">
@@ -172,7 +174,7 @@
 								</ul>
 							</div>
 							<div class="item-catalog-cards__image">
-								<img src="@img/mainpage/catalog-cards/04.jpg" alt="картинка">
+								<img src="@img/mainpage/catalog-cards/04.jpg" alt="картинка" />
 							</div>
 						</div>
 						<div class="catalog-cards__item item-catalog-cards">
@@ -187,7 +189,7 @@
 								</ul>
 							</div>
 							<div class="item-catalog-cards__image">
-								<img src="@img/mainpage/catalog-cards/05.jpg" alt="картинка">
+								<img src="@img/mainpage/catalog-cards/05.jpg" alt="картинка" />
 							</div>
 						</div>
 						<div class="catalog-cards__item item-catalog-cards">
@@ -202,11 +204,18 @@
 								</ul>
 							</div>
 							<div class="item-catalog-cards__image">
-								<img src="@img/mainpage/catalog-cards/06.jpg" alt="картинка">
+								<img src="@img/mainpage/catalog-cards/06.jpg" alt="картинка" />
 							</div>
 						</div>
 					</div>
 				</section>
+				<!-- ! Карточки товара слайдер -->
+				<!-- ~ Вывожу слайдер с карточками в отдельный Html файл так как подобных слайдеров будет несколько -->
+				<!-- ~ !!!!! Разрешение файла *.htm (html webpack'овский плагин копирует в результат, htm - нет)-->
+				@@include('html/_products-slider.htm',{
+					"title":"Хиты продаж"
+				})
+
 			</main>
 			@@include('html/_footer.htm',{})
 		</div>
