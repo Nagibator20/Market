@@ -47,7 +47,8 @@ function initSliders() {
 	bildSliders()
 
 	// Перечень слайдеров
-	// Проверяем, есть ли слайдер на стронице
+	// Проверяем, есть ли слайдер на странице
+	// ! если нужно добавить еще один слайдел с другим функционалом - нужно скопировать и вставить ниже этот if ()
 	if (document.querySelector('.main-block__slider')) {
 		// Указываем класс нужного слайдера
 		// Создаем слайдер
@@ -58,7 +59,7 @@ function initSliders() {
 			modules: [Navigation, Pagination, Parallax, Autoplay],
 			observer: true,
 			observeParents: true,
-			slidesPerView: 1,
+			slidesPerView: 1, // ! сколько изначально выведено объектов
 			spaceBetween: 50,
 			parallax: true,
 			// autoHeight: true, //! закомментировал как в видео
@@ -66,7 +67,7 @@ function initSliders() {
 
 			//touchRatio: 0,
 			//simulateTouch: false,
-			// loop: true,//! смена слайдов по кругу //!!! Раскоментировать
+			// loop: true,//! смена слайдов по кругу (если слайд 1 он добавит еще 2)//!!! (Раскоментировать как в видео)
 			//preloadImages: false,
 			//lazy: true,
 
@@ -133,7 +134,6 @@ function initSliders() {
 					const allSlidesItem = document.querySelectorAll('.slide-main-block:not(.swiper-slide-duplicate)')
 					allSlides.innerHTML = allSlidesItem.length < 10 ? `0${allSlidesItem.length}` : allSlidesItem.length
 
-
 					//! смотрю что находится в swiper
 					console.log(swiper)
 					//! swiper.slides.length -> консоль хрома->Swiper->sliders<-(массив из моих слайдов)
@@ -149,6 +149,87 @@ function initSliders() {
 					currentSlide.innerHTML = swiper.realIndex + 1 < 10 ? `0${swiper.realIndex + 1}` : swiper.realIndex + 1
 				},
 			},
+		})
+	}
+
+	//! еще один слайдер
+	if (document.querySelector('.products-slider')) {
+		// Указываем класс нужного слайдера
+		// Создаем слайдер
+		new Swiper('.products-slider__slider', {
+			// Указываем класс нужного слайдера Pagination, Navigation или другие.
+			// Подключаем модули слайдера
+			// для конкретного случая
+			modules: [Navigation, Pagination, Autoplay],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4, // ! сколько изначально выведено объектов
+			spaceBetween: 30, // ! расстояние между объектами
+			parallax: true,
+			// autoHeight: true, //! закомментировал как в видео
+			speed: 800,
+
+			//touchRatio: 0,
+			//simulateTouch: false,
+			loop: true, //! (если слайд 1 он добавит еще 2) смена слайдов по кругу
+			//! автоматическая смена слайда //!!! Раскоментировать
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			//preloadImages: false,
+			//lazy: true,
+
+			// Эффекты
+			// effect: 'fade',
+
+			// Пагинация
+
+			pagination: {
+				// прописываю сюда класс из Html
+				el: '.products-slider__dotts',
+				clickable: true,
+				dynamicBullets:true,
+			},
+
+			// Скроллбар
+			/*
+			scrollbar: {
+				el: '.swiper-scrollbar',
+				draggable: true,
+			},
+			*/
+
+			// Кнопки "влево/вправо"
+			// navigation: {
+			// 	prevEl: '.swiper-button-prev',
+			// 	nextEl: '.swiper-button-next',
+			// },
+
+			// Брейкпоинты
+			// ! при разных разрешениях меняю количество слайдов ка экране
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					// autoHeight: true,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				1370: {
+					slidesPerView: 4,
+					spaceBetween: 30,
+				},
+			},
+			
+			// События
+			on: {},
 		})
 	}
 }

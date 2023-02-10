@@ -48,6 +48,7 @@
 	grid-auto-flow: column;
 	align-items: center;
 	gap: rem(20);
+	transform: translate(0px,10%);
 	// .controll-main-block__dotts
 	&__dotts {
 		display: inline-grid;
@@ -444,3 +445,7 @@
 }
 //! Карточки товара=====================
 // Стили вынесены в отдельный файл -> _products-slider.scss
+.hits-products{ //!!! разобратся!!!!!!!
+	@include adaptiveValue('padding-top', 50, 40);
+	@include adaptiveValue('padding-bottom', 120, 40);
+}

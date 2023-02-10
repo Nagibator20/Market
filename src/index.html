@@ -212,10 +212,14 @@
 				<!-- ! Карточки товара слайдер -->
 				<!-- ~ Вывожу слайдер с карточками в отдельный Html файл так как подобных слайдеров будет несколько -->
 				<!-- ~ !!!!! Разрешение файла *.htm (html webpack'овский плагин копирует в результат, htm - нет)-->
-				@@include('html/_products-slider.htm',{
-					"title":"Хиты продаж"
-				})
+				<!-- ~ можно обернуть в модификатор "modif":"название" в подключаемом HTML page__products-slider_@@modif (как пример)-->
+				<section class="page__hits-products hits-products">
+					@@include('html/_products-slider.htm',{ "title":"Хиты продаж", "moretext":"Перейти в каталог" })
+					<!-- ~ !! в конце запятую не ставить -->
+				</section>
+				<section class="page__new-products new-products">
 
+				</section>
 			</main>
 			@@include('html/_footer.htm',{})
 		</div>

@@ -34,8 +34,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		object-fit: contain;// ! Изменил 
-		// object-fit: cover; // ! Было так
+		object-fit: cover;
 	}
 }
 [class*="-ibg_contain"] {
