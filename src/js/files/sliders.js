@@ -173,10 +173,10 @@ function initSliders() {
 			//simulateTouch: false,
 			loop: true, //! (если слайд 1 он добавит еще 2) смена слайдов по кругу
 			//! автоматическая смена слайда //!!! Раскоментировать
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
+			// autoplay: {
+			// 	delay: 3000,
+			// 	disableOnInteraction: false,
+			// },
 			//preloadImages: false,
 			//lazy: true,
 
@@ -189,7 +189,7 @@ function initSliders() {
 				// прописываю сюда класс из Html
 				el: '.products-slider__dotts',
 				clickable: true,
-				dynamicBullets:true,
+				dynamicBullets: true,
 			},
 
 			// Скроллбар
@@ -211,7 +211,7 @@ function initSliders() {
 			breakpoints: {
 				320: {
 					slidesPerView: 1,
-					spaceBetween: 0,
+					spaceBetween: 10,
 					// autoHeight: true,
 				},
 				768: {
@@ -227,7 +227,88 @@ function initSliders() {
 					spaceBetween: 30,
 				},
 			},
-			
+
+			// События
+			on: {},
+		})
+	}
+
+	//! еще один слайдер
+	if (document.querySelector('.products-new')) {
+		// Указываем класс нужного слайдера
+		// Создаем слайдер
+		new Swiper('.products-new__slider', {
+			// Указываем класс нужного слайдера Pagination, Navigation или другие.
+			// Подключаем модули слайдера
+			// для конкретного случая
+			modules: [Navigation, Pagination, Autoplay],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 3, // ! сколько изначально выведено объектов
+			spaceBetween: 30, // ! расстояние между объектами
+			parallax: true,
+			// autoHeight: true, //! закомментировал как в видео
+			speed: 800,
+
+			//touchRatio: 0,
+			//simulateTouch: false,
+			loop: true, //! (если слайд 1 он добавит еще 2) смена слайдов по кругу
+			//! автоматическая смена слайда //!!! Раскоментировать
+			// autoplay: {
+			// 	delay: 3000,
+			// 	disableOnInteraction: false,
+			// },
+			//preloadImages: false,
+			//lazy: true,
+
+			// Эффекты
+			// effect: 'fade',
+
+			// Пагинация
+
+			pagination: {
+				// прописываю сюда класс из Html
+				el: '.products-new__dotts',
+				clickable: true,
+				dynamicBullets: true,
+			},
+
+			// Скроллбар
+			/*
+				scrollbar: {
+					el: '.swiper-scrollbar',
+					draggable: true,
+				},
+				*/
+
+			// Кнопки "влево/вправо"
+			// navigation: {
+			// 	prevEl: '.swiper-button-prev',
+			// 	nextEl: '.swiper-button-next',
+			// },
+
+			// Брейкпоинты
+			// ! при разных разрешениях меняю количество слайдов ка экране
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+					// autoHeight: true,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				1330: {
+					slidesPerView: 3,
+					spaceBetween: 30,
+				},
+			},
+
 			// События
 			on: {},
 		})
