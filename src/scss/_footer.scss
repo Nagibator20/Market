@@ -1,3 +1,235 @@
-//====================================================================================================
+.footer {
+	background-color: $mainSiteColor;
+	// .footer__text
+	&__text {
+	}
+	// .footer__container
+	&__container {
+	}
+	// .footer__body
+	&__body {
+	}
+}
+.text-footer {
+	// ! padding будет расширять отнасительно border внутрь блока (текст сдвинится ниже верхнего края картинки) margin -> наружу (увеличится белая область)
+	@include adaptiveValue('padding-top', 60, 40);
+	@include adaptiveValue('padding-bottom', 60, 40);
+	background: url('@img/footer/bg.jpg') top / cover no-repeat;
+	// .text-footer__container
+	&__container {
+	}
+	// .text-footer__title
+	&__title {
+		text-align: center;
+		font-weight: bold;
+		color: #e8aa31;
+		@include adaptiveValue('font-size', 30, 24);
+		line-height: math.div(46, 30);
+		&:not(:last-child) {
+			margin-bottom: em(30, 30);
+		}
+	}
+	// .text-footer__text
+	&__text {
+		color: #fff;
+		@include adaptiveValue('font-size', 18, 16);
+		line-height: math.div(27, 18);
+	}
+}
+.body-footer {
+	@include adaptiveValue('padding-top', 100, 40);
+	@include adaptiveValue('padding-bottom', 50, 40);
+	display: grid;
+	@include adaptiveValue('gap', 35, 25);
+	// .body-footer__row
+	&__row {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(rem(290), 1fr));
+		column-gap: rem(40); // ! отступы между колонками
+		@include adaptiveValue('row-gap', 40, 20); //! отступы между рядами
+		&:not(:last-child) {
+			//! у всех объектов кроме последнего
+			// @include adaptiveValue('padding-bottom', 30, 20);
+			padding: 0 0 rem(30) 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+		}
+	}
+	// .body-footer__iem
+	&__iem {
+	}
+	// .body-footer__bottom
+	&__bottom {
+		color: rgba(255,255,255,0.8);
+		font-size: rem(14);
+		line-height: math.div(27,14);
+		@media (min-width:em(1200)) {
+			display: flex;
+			justify-content: space-between;
+			gap: rem(20);
+		}
+	}
+	// .body-footer__rules
+	&__rules {
+		max-width: rem(820);
+	}
+	// .body-footer__copy
+	&__copy {
+		span{
+			white-space: nowrap; //! что бы не переносило слова на следующие строки
+		}
+	}
+}
+.item-footer {
+	// .item-footer__spoller
+	&__spoller {
+	}
+}
+.spoller-item-footer {
+	// .spoller-item-footer__item
+	&__item {
+	}
+	// .spoller-item-footer__title
+	&__title {
+		text-transform: uppercase;
+		color: #fff;
+		font-weight: 600;
+		line-height: math.div(22, 18);
+		._spoller-init & {
+			//!!!!! & !!в конце названия класса (пока хз почему)
+			//!! (относится к data-spollers=77.98) класс добавляется автоматически если меню превратилось в спойлер (прописывать сюда его надо вручную (скопировать можно при дебаге в хроме) на его можно навешивать различные действия в данном случае повесил иконки
+			display: flex;
+			width: 100%;
+			// align-items: center; //! убрал в after добавил margin
+			justify-content: space-between;
+			gap: rem(10);
+			&::after {
+				content: '\e900';
+				font-size: rem(8);
+				margin: em(5, 8) 0 0 0; //! тут
+				transition: transform 0.3s ease 0s;
+				@extend %ic;
+			}
+		}
+		&._spoller-active {
+			//!!!!! & !!в начале названия класса (пока хз почему)
+			//!! (относится к data-spoller) класс добавляется автоматически если спойлер развернут (прописывать сюда его надо вручную (скопировать можно при дебаге в хроме) на его можно навешивать различные действия в разворот иконки
+			&::after {
+				transform: rotate(-180deg);
+			}
+		}
+	}
+	// .spoller-item-footer__body
+	&__body {
+		@include adaptiveValue('padding-top', 30, 20);
+		@include adaptiveValue('padding-bottom', 30, 20);
+	}
+	// .spoller-item-footer__text
+	&__text {
+		max-width: rem(320);
+		line-height: math.div(27, 18);
+		color: #fff;
+		a {
+			color: #e8aa31;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+.menu-footer {
+	&:not(:last-child) {
+		@include adaptiveValue('margin-bottom', 32, 20);
+	}
+	// .menu-footer__list
+	&__list {
+	}
+	// .menu-footer__item
+	&__item {
+		line-height: 1.5;
+		display: flex;
+		color: rgba(255, 255, 255, 0.8);
+		&:not(:last-child) {
+			margin-bottom: em(20, 18); //!! 20 отступ 18 р-р текста
+		}
+		&::before {
+			font-size: rem(19);
+			margin: em(5, 15) em(10, 15) 0 0;
+		}
+	}
+	// .menu-footer__link
+	&__link {
+		display: inline-flex; // ! иконки будут в одну строку с текстом
+		line-height: math.div(27, 18);
+		color: rgba(255, 255, 255, 0.8);
+		&::before {
+			font-size: rem(20);
+			margin: em(5, 15) em(10, 15) 0 0;
+		}
+		&.icon-footer-mail {
+			//! из за того что иконка почты больше других ее размер настраиваю отдельно
+			&::before {
+				font-size: rem(13);
+			}
+		}
+	}
+}
+.social-footer {
+	display: flex;
+	gap: rem(24);
+	// .social-footer__item
+	&__item {
+	}
+	// .social-footer__link
+	&__link {
+	}
+}
 
-//====================================================================================================
+//! НОВОСТНАЯ РАССЫЛКА==================================
+.footer-subscribe {
+	// .footer-subscribe__label
+	&__label {
+		line-height: math.div(22, 18);
+		display: block;
+		color: #fff;
+		&:not(:last-child) {
+			margin-bottom: em(10, 18);
+		}
+	}
+	// .footer-subscribe__line
+	&__line {
+		display: flex; // ! кнопка будет в одну строчку с инпутом
+		position: relative; //! тут 1
+		.form__error {
+			// ! класс добавляется автоматически если выпала ошибка (прописывать сюда его надо вручную (скопировать можно при дебаге в хроме) всплывашки можно кастомизировать в отличии от стандартных браузерных
+			position: absolute; //! тут 2
+			bottom: -21px;
+			font-size: rem(20);
+			color: red;
+		}
+	}
+	// .footer-subscribe__input
+	&__input {
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: rem(3) 0 0 rem(3);
+		height: rem(48);
+		padding: 0 rem(20);
+		color: #fff;
+		width: 100%;
+		border: 1px solid #fff;
+		border-right: none; // ! убирает бордер справа
+	}
+	// .footer-subscribe__button
+	&__button {
+		border-radius: 0 rem(3) rem(3) 0;
+		flex: 0 0 rem(50); // ! габариты кнопки
+		display: flex; //! центрирую кнопку в блоке
+		justify-content: center; //! тоже
+		align-items: center; //! тоже
+		background-color: #e8aa31;
+		&::before {
+			color: #fff;
+			font-size: rem(8);
+			transform: rotate(-90deg);
+		}
+	}
+}
