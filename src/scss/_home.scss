@@ -534,9 +534,9 @@
 }
 //! Фонари=============================================
 .products-block {
+	@include adaptiveValue('margin-bottom', 120, 40);
 	// .products-block__container
 	&__container {
-
 		display: grid;
 		gap: rem(30);
 		@media (min-width:$mobileSmall) {
@@ -601,11 +601,6 @@
 	}
 	// .product-block__image
 	&__image {
-		//! переместил в media для того что бы картинка была ниже текста при мобильном разрешении
-		// position: absolute;
-		// height: 100%;
-		// top: 0;
-		// right: 0;
 		width: 100%;
 		text-align: right;
 		display: flex;
@@ -615,9 +610,7 @@
 		img {
 			max-width: 100%;
 		}
-		@media (min-width: $mobileSmall) {
-			//! сюда
-			//!!!! Если разрешение больше мобильного то эти параметры будут работать если меньше - то нет
+		@media (min-width: em(710)) {
 			position: absolute;
 			height: 100%;
 			top: 0;
@@ -625,21 +618,21 @@
 		}
 	}
 	// .product-block__text
-	&__text {
+	&__text {		
 		font-size: rem(18);
 		line-height: math.div(27,18);
 		&:not(:last-child) {
-			margin-bottom: em(46);
+			margin-bottom: em(46,18);
+		}
+		@media (min-width: em(710)) {
+			max-width: rem(265); // максимальная ширина контейнера с текстом
 		}
 	}
+		// .product-block__button
+		&__button {
+			@media (max-width: em(710)) { // кнопка на всю ширину
+			width: 100%;
+			}
+		}
 
-
-
-
-	// .product-block__button
-	&__button {
-	}
-	// .product-block__image
-	&__image {
-	}
 }
