@@ -5,23 +5,38 @@
 		<div class="wrapper">
 			@@include('html/_header.htm',{})
 			<main class="page page_inner">
-			<div class="catalog">
-				<div class="catalog__container">
-					<h1 class="catalog__title">Разделочные ножи</h1>
-					<!-- ^ элементы навигации -->
-					<nav class="breadcrumbs">
-						<ul class="breadcrumbs__list">
-							<li class="breadcrumbs__item">
-								<a href="" class="breadcrumbs__link">Главная</a>
-							</li>
-							<li class="breadcrumbs__item">
-								<!-- ^ обычно последняя страница не делается ссылкой -->
-								<span class="breadcrumbs__current">Разделочные ножи></span>
-							</li>
-						</ul>
-					</nav>
+				<div class="page__header">
+					<div class="page__container">
+						<!-- ^ title вставил в common - так как встречается часто -->
+						<h1 class="page__title title">Разделочные ножи</h1>
+						<!-- ^ элементы навигации -->
+						<nav class="page__breadcrumbs breadcrumbs">
+							<ul class="breadcrumbs__list">
+								<li class="breadcrumbs__item">
+									<a href="" class="breadcrumbs__link">Главная</a>
+								</li>
+								<li class="breadcrumbs__item">
+									<!-- ^ обычно последняя страница не делается ссылкой -->
+									<span class="breadcrumbs__current">Разделочные ножи></span>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
-			</div>
+				<div class="catalog">
+					<div class="catalog__container">
+						<div class="catlog__control">
+							<!-- ^ что бы заработал нудно подключить в js/app.js  (import './libs/select.js') и в стилях scss/base/forms/_forms.scss (@import "select";)-->
+							<!-- ! так в видео <select name="form[]" class="form"> изменил на class="control"-->
+							<select name="form[]" dataset="asd" class="control">
+								<option value="1" selected>По популярности</option>
+								<option value="2">По названию</option>
+								<option value="3">По цене</option>
+								<option value="4">По отзывам</option>
+							</select>
+						</div>
+					</div>
+				</div>
 			</main>
 			@@include('html/_footer.htm',{})
 		</div>

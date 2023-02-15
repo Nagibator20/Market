@@ -89,7 +89,9 @@ flsForms.formSubmit();
 flsForms.formRating();
 
 /* Модуль работы с select. */
-// import './libs/select.js'
+ import './libs/select.js'
+ //!! в оригинальном коде ошибка (возможно) в стартовом шаблоне нужно исправлять как ниже - так псевдокласс добавляется
+ //!! originalSelect.className ? selectItem.classList.add(`select_${originalSelect.className}`) : null;
 
 /* (В работе) Модуль работы с масками.*/
 /*
@@ -128,6 +130,7 @@ import "./files/tippy.js";
 Сниппет(HTML): swiper
 */
 import "./files/sliders.js";
+// !! в шаблоне нет функции function bildSliders() дописывал сам без нее не будет работать (код функции смотри в sliders.js)!!!
 
 // ======================================
 // Модули работы с прокруткой страницы ===========================

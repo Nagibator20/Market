@@ -189,7 +189,7 @@
 	}
 	// .body-header__logo
 	&__logo {
-		@extend %ic;
+		@extend %ic; //! подключаю иконочный шрифт
 		@extend .icon-logo;
 		font-size: rem(42);
 		color: $mainSiteColor;
@@ -319,7 +319,7 @@
 		//~a добавляю иконку телефона (изначально скрытой)
 		&::before {
 			//~a сюда
-			@extend %ic;
+			@extend %ic; //! подключаю иконочный шрифт
 			@extend .icon-footer-phone;
 			display: none;
 		}
@@ -543,7 +543,7 @@
 		&[data-parent] {
 			//~a по селектору тега (dataset) добавляю стрелки к пунктам подменю
 			&::before {
-				@extend %ic;
+				@extend %ic; //! подключаю иконочный шрифт
 				@extend .icon-arrow-down;
 				display: none;
 				@media (max-width: $tablet) {

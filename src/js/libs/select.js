@@ -104,6 +104,7 @@ class SelectConstructor {
 	}
 	// Функция инициализации всех селектов
 	selectsInit(selectItems) {
+		//! console.log(selectItems)
 		selectItems.forEach((originalSelect, index) => {
 			this.selectInit(originalSelect, index + 1);
 		});
@@ -153,7 +154,7 @@ class SelectConstructor {
 		// Конструктор основных элементов
 		selectItem.insertAdjacentHTML('beforeend', `<div class="${this.selectClasses.classSelectBody}"><div hidden class="${this.selectClasses.classSelectOptions}"></div></div>`);
 		// Запускаем конструктор псевдоселекта
-		this.selectBuild(originalSelect);
+			this.selectBuild(originalSelect);
 
 		// Запоминаем скорость
 		originalSelect.dataset.speed = originalSelect.dataset.speed ? originalSelect.dataset.speed : "150";
@@ -165,10 +166,17 @@ class SelectConstructor {
 	// Конструктор псевдоселекта
 	selectBuild(originalSelect) {
 		const selectItem = originalSelect.parentElement;
-		// Добавляем ID селекта
+			// Добавляем ID селекта
 		selectItem.dataset.id = originalSelect.dataset.id;
 		// Получаем класс оригинального селекта, создаем модификатор и добавляем его
-		originalSelect.dataset.classModif ? selectItem.classList.add(`select_${originalSelect.dataset.classModif}`) : null;
+		//!! Переписал сам - так работает
+		console.dir(originalSelect.className)
+		console.dir(selectItem)
+		originalSelect.className ? selectItem.classList.add(`select_${originalSelect.className}`) : null;
+
+		//!!! СУКА пол дня проебался что бы найти причину!!! так не правильно
+		// !! originalSelect.dataset.classModif ? selectItem.classList.add(`select_${originalSelect.dataset.classModif}`) : null;
+
 		// Если множественный выбор, добавляем класс
 		originalSelect.multiple ? selectItem.classList.add(this.selectClasses.classSelectMultiple) : selectItem.classList.remove(this.selectClasses.classSelectMultiple);
 		// Cтилизация элементов под checkbox (только для multiple)

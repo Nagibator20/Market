@@ -131,7 +131,8 @@ body {
 @import 'common';
 
 //! Подключил свой файл стилей scss со слайдером карточек продукта
-@import 'products-slider';
+// @import 'products-slider'; // ! удалит перенес все в common (так как это общие стили блоков и кнопок (так будет логичнее))
+
 // Подключение стилей отдельных блоков
 @import 'header';
 @import 'footer';
@@ -140,10 +141,19 @@ body {
 @import 'home';
 @import 'catalog';
 
-//! Перенес из _home.scss
+//! Перенес из _home.scss и других scss файлов (сборная)
 .page {
 	// .page_home
 	&_home {
+		//! c одним (_) "главные файлы"
+	}
+	// .page_inner //! относится ко 2й странице catalog.html (перенес при вставке есстрактора из _catalog.scss)
+	&_inner {
+		padding-top: rem(30);
+	}
+	// .page__header //! относится ко 2й странице catalog.html (перенес при вставке есстрактора из _catalog.scss)
+	&__header {
+		padding-bottom: rem(30);
 	}
 	// .page__main-block
 	&__main-block {

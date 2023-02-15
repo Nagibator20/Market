@@ -104,10 +104,10 @@
 			gap: rem(10);
 			&::after {
 				content: '\e900';
+				@extend %ic; //! подключаю иконочный шрифт
 				font-size: rem(8);
 				margin: em(5, 8) 0 0 0; //! тут
 				transition: transform 0.3s ease 0s;
-				@extend %ic;
 			}
 		}
 		&._spoller-active {
