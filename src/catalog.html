@@ -17,7 +17,7 @@
 								</li>
 								<li class="breadcrumbs__item">
 									<!-- ^ обычно последняя страница не делается ссылкой -->
-									<span class="breadcrumbs__current">Разделочные ножи></span>
+									<span class="breadcrumbs__current">Разделочные ножи</span>
 								</li>
 							</ul>
 						</nav>
@@ -25,15 +25,478 @@
 				</div>
 				<div class="catalog">
 					<div class="catalog__container">
-						<div class="catlog__control">
-							<!-- ^ что бы заработал нудно подключить в js/app.js  (import './libs/select.js') и в стилях scss/base/forms/_forms.scss (@import "select";)-->
-							<!-- ! так в видео <select name="form[]" class="form"> изменил на class="control"-->
-							<select name="form[]" dataset="asd" class="control">
-								<option value="1" selected>По популярности</option>
-								<option value="2">По названию</option>
-								<option value="3">По цене</option>
-								<option value="4">По отзывам</option>
-							</select>
+						<div class="catalog__body">
+							<div class="catalog__filter"></div>
+							<div class="catalog__content">
+								<div class="catalog__control">
+									<!-- ^ что бы заработал нудно подключить в js/app.js  (import './libs/select.js') и в стилях scss/base/forms/_forms.scss (@import "select";)-->
+									<!-- ! так в видео <select name="form[]" class="form"> изменил на class="control"-->
+									<select name="form[]" dataset="asd" class="control">
+										<option value="1" selected>По популярности</option>
+										<option value="2">По названию</option>
+										<option value="3">По цене</option>
+										<option value="4">По отзывам</option>
+									</select>
+								</div>
+								<div class="catalog__products">
+									<article class="product-card">
+										<!-- ^ product-card__sale иконка распродажи -->
+										<div class="product-card__sale"> -50%</div>
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+									<article class="product-card">
+										<a href="" class="product-card__image">
+											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
+											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
+												<img src="@img/product-card/image.jpg" alt="Картинка" />
+											</span>
+										</a>
+										<div class="product-card__body">
+											<h4 class="product-card__title">
+												<a href="" class="product-card__link-title">Нож лиса</a>
+											</h4>
+											<div class="product-card__info info-product-card">
+												<div class="info-product-card__size">95х18</div>
+												<div class="info-product-card__materials">Орех, Алюминий</div>
+											</div>
+											<!-- ! Рейтинг -->
+											<div class="product-card__rating rating rating_set">
+												<div class="rating__body">
+													<div class="rating__active"></div>
+													<div class="rating__items">
+														<input type="radio" class="rating__item" value="1" name="rating" />
+														<input type="radio" class="rating__item" value="2" name="rating" />
+														<input type="radio" class="rating__item" value="3" name="rating" />
+														<input type="radio" class="rating__item" value="4" name="rating" />
+														<input type="radio" class="rating__item" value="5" name="rating" />
+													</div>
+												</div>
+												<div class="rating__value">3.6</div>
+												<div class="rating__info">12 отзывов</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__price">2 719 р.</div>
+												<a href="" class="product-card__compare icon-comparer"></a>
+												<a href="" class="product-card__favorite icon-favorite"></a>
+											</div>
+											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
+											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+										</div>
+									</article>
+								</div>
+								<div class="catalog__footer">
+									<!-- ^ добавил модификатор button_border так как у этой кнопки другой стиль (нужно чутка подправить в том же scss/base/forms/_button.scss -> добавить вручную &_border{...} )-->
+									<a href="" class="catalog__more button button_border"> Показать больше</a>
+									<div class="catalog__pagging pagging">
+										<button type="button" class="pagging__arrow pagging__arrow_left icon-arrow-down"></button>
+										<ul class="pagging__list">
+											<li class="pagging__item">
+												<a href="" class="pagging__link _active">1</a>
+											</li>
+											<li class="pagging__item">
+												<a href="" class="pagging__link">2</a>
+											</li>
+											<li class="pagging__item">
+												<a href="" class="pagging__link">3</a>
+											</li>
+											<li class="pagging__item">
+												<a href="" class="pagging__link">...</a>
+											</li>
+											<li class="pagging__item">
+												<a href="" class="pagging__link">15</a>
+											</li>
+										</ul>
+										<button type="button" class="pagging__arrow pagging__arrow_right icon-arrow-down"></button>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

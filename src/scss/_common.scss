@@ -134,10 +134,22 @@
 	grid-template-rows: auto 1fr;
 	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
 	transition: box-shadow 0.3s ease 0s;
+	position: relative;
 	@media (any-hover: hover) {
 		&:hover {
 			box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
 		}
+	}
+	//.product-card__sale //! добавил позже( пропустил :-) ) 
+	&__sale{
+		position: absolute; //! выше добавил position:relative !!!
+		top: rem(20);
+		left: 0;
+		color: #fff;
+		background-color: #e8aa31;
+		padding: rem(6) rem(22); // !! размер блока задаю падингом (внутренними отступами)
+		z-index: 10;
+		pointer-events: none; //! убирает курсор ввода текста при наведении на текст
 	}
 	// .product-card__image-ibg
 	&__image-ibg {
@@ -408,5 +420,62 @@
 	line-height: math.div(29,24);
 	&:not(:last-child){
 		margin-bottom: em(25,24);
+	}
+}
+//! пагинация общая (номера страниц) перенес из _catalog.scss======
+.pagging {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: rem(30);
+	// .pagging__arrow
+	&__arrow {
+		color: #e8aa31;
+		&::before{
+			font-size: rem(10);
+			transform: rotate(-90deg);
+		}
+		&:disabled{
+			//! прописал сам (при разработке disabled (пишется по принципу dataset) можно прописать в ручную что бы было понятнее, но потом не забыть удалить!!!)
+			color: rgba(0, 0, 0, 0.12);
+		}
+		// .pagging__arrow_left
+		&_left {
+			transform: rotate(-180deg);
+		}
+		// .pagging__arrow_right
+		&_right {
+			// transform: rotate(-90deg);
+		}
+	}
+	// .pagging__list
+	&__list {
+		display: flex; //! цифры будут в строку верхний display flex - родительский блок выравнивает только дочерние блоки, для выравнивания в дочернем блоке - нужно прописывать дополнительно
+		align-items: center;
+		gap: rem(13);
+	}
+	// .pagging__item
+	&__item {
+	}
+	// .pagging__link
+	&__link {
+		width: rem(34);
+		height: rem(34);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		&._active{
+			//!вставил сам. класс добавляется автоматически найти при дебаге в хроме (при разработке класс (_active) можно прописать в ручную что бы было понятнее, но потом не забыть удалить!!!)
+			background-color: #e8aa31;
+			color: #fff;
+		}
+		@media (any-hover:hover) {
+			//! подсветка цифер перехода на другие страницы при наведении
+			&:hover{
+				background-color: #e8aa31;
+				color: #fff;
+			}
+		}
 	}
 }

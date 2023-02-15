@@ -20,5 +20,10 @@
 			box-shadow: 0px 4px 25px rgba(232,170,49,0.63);
 		}
 	}
-
+	&_border{ //! добавил для коррекции стиля непохожей кнопки
+		background-color: #fff;
+		border: 1px solid #e8aa31;
+		color: #e8aa31;
+		box-shadow: none; //! отключил тень
+	}
 }
