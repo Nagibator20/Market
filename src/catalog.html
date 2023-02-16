@@ -26,10 +26,39 @@
 				<div class="catalog">
 					<div class="catalog__container">
 						<div class="catalog__body">
-							<div class="catalog__filter"></div>
+							<!-- ^ Фильтры со спойлерами -->
+							<div class="catalog__filter filter-catalog">
+								<div class="filter-catalog__title">Фильтр товаров</div>
+								<div data-spollers class="filter-catalog__items">
+									<!-- ^Ползуки и поля ввода  добавил дата атрибуты -->
+									<!-- ^ подключить - js/app.js  (import "./files/forms/range.js") в самом файле дописал код, подключить стили scss/base/forms/_forms.scss -> @import "range"; (scss/base/forms/_range.scss тут можно переделать стили)-->
+									<div class="filter-catalog__price price-filter">
+										<button type="button" data-spoller class="price-filter__title icon-arrow-up-spoiler">Цена</button>
+										<div data-range class="price-filter__body">
+											<div class="price-filter__inputs">
+												<input data-range-from="0" autocomplete="off" type="text" value="500" name="form[]" data-error="Ошибка" class="price-filter__input" />
+												<input data-range-to="5000" autocomplete="off" type="text" value="1000" name="form[]" data-error="Ошибка" class="price-filter__input" />
+											</div>
+											<div data-range-item class="price-filter__range"></div>
+										</div>
+									</div>
+									<!-- ^ Чекбоксы  -->
+									<!-- ^ Подключить scss/base/forms/_forms.scss @import "checkbox" (scss/base/forms/_checkbox.scss тут можно их настроить)-->
+									<div class="filter-catalog__item item-filter-catalog">
+										<button type="button" data-spoller class="item-filter-catalog__title icon-arrow-up-spoiler">Производство</button>
+										<div class="item-filter-catalog__body">
+											<div class="checkbox">
+												<input id="c_1" data-error="Ошибка" class="checkbox__input" type="checkbox" value="1" name="form[]" /><label for="c_1" class="checkbox__label"
+													><span class="checkbox__text">АиР<small>(250)</small></span></label
+												>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="catalog__content">
 								<div class="catalog__control">
-									<!-- ^ что бы заработал нудно подключить в js/app.js  (import './libs/select.js') и в стилях scss/base/forms/_forms.scss (@import "select";)-->
+									<!-- ^ что бы заработал нудно подключить в js/app.js  (import './libs/select.js') и в стилях scss/base/forms/_forms.scss (@import "select";) -->
 									<!-- ! так в видео <select name="form[]" class="form"> изменил на class="control"-->
 									<select name="form[]" dataset="asd" class="control">
 										<option value="1" selected>По популярности</option>
@@ -41,7 +70,7 @@
 								<div class="catalog__products">
 									<article class="product-card">
 										<!-- ^ product-card__sale иконка распродажи -->
-										<div class="product-card__sale"> -50%</div>
+										<div class="product-card__sale">-50%</div>
 										<a href="" class="product-card__image">
 											<!-- ^ настройки ibg находятся в _base.scss !!!(одно подчеркивание) _contain-->
 											<span class="product-card__item-image-ibg product-card__item-image-ibg_contain">
@@ -77,7 +106,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -116,7 +147,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -155,7 +188,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -194,7 +229,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -233,7 +270,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -272,7 +311,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -311,7 +352,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -350,7 +393,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -389,7 +434,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -428,7 +475,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 									<article class="product-card">
@@ -467,7 +516,9 @@
 												<a href="" class="product-card__favorite icon-favorite"></a>
 											</div>
 											<!-- ^ нужно добавить класс button что бы подключились стили кнопок -->
-											<button type="button" class="product-card__cart button"><span class="icon-cart">В корзину</span></button>
+											<button type="button" class="product-card__cart button">
+												<span class="icon-cart">В корзину</span>
+											</button>
 										</div>
 									</article>
 								</div>

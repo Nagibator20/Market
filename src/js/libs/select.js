@@ -170,8 +170,8 @@ class SelectConstructor {
 		selectItem.dataset.id = originalSelect.dataset.id;
 		// Получаем класс оригинального селекта, создаем модификатор и добавляем его
 		//!! Переписал сам - так работает
-		console.dir(originalSelect.className)
-		console.dir(selectItem)
+		// console.dir(originalSelect.className)
+		// console.dir(selectItem)
 		originalSelect.className ? selectItem.classList.add(`select_${originalSelect.className}`) : null;
 
 		//!!! СУКА пол дня проебался что бы найти причину!!! так не правильно

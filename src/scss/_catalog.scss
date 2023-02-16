@@ -1,11 +1,17 @@
+//! каталог
 .catalog {
-	@include adaptiveValue('padding-bottom',120,30); // !отступ от кнопки "Показать больше" до footer'a (основного)
+	@include adaptiveValue(
+		'padding-bottom',
+		120,
+		30
+	); // !отступ от кнопки "Показать больше" до footer'a (основного)
 	// .catalog__container
 	&__container {
 	}
 	// .catalog__body
 	&__body {
 		display: grid;
+    align-items: start;
 		grid-template-columns: rem(375) 1fr;
 		gap: rem(30);
 	}
@@ -27,9 +33,16 @@
 	&__products {
 		display: grid;
 		gap: rem(30);
-		grid-template-columns: repeat(auto-fill, minmax(rem(290), rem(375))); //! ширина карточек минимальная максимальная
-		&:not(:last-child){
-			@include adaptiveValue('margin-bottom',60,30); // !отступ от каталога до кнопки "Показать больше"
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(rem(290), rem(375))
+		); //! ширина карточек минимальная максимальная
+		&:not(:last-child) {
+			@include adaptiveValue(
+				'margin-bottom',
+				60,
+				30
+			); // !отступ от каталога до кнопки "Показать больше"
 		}
 	}
 	// .catalog__footer
@@ -44,6 +57,108 @@
 	// .catalog__pagging
 	&__pagging {
 	}
+}
+//! ползунки (range)
+.filter-catalog {
+	background: #fefefe;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	// .filter-catalog__title
+	&__title {
+		background-color: $mainSiteColor;
+		font-weight: bold;
+		font-size: rem(20);
+		line-height: math.div(24, 20);
+		padding: rem(20) rem(30);
+		color: #fefefe;
+	}
+	// .filter-catalog__items
+	&__items {
+	}
+	// .filter-catalog__price
+	&__price {
+	}
+}
+.price-filter {
+	padding: rem(30);
+	// .price-filter__title
+	&__title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: row-reverse;
+		width: 100%;
+		&::before {
+			color: #e8aa31;
+			font-size: rem(8);
+			transform: rotate(-180deg);
+			transition: transform 0.3s ease 0s;
+		}
+		&._spoller-active {
+			//!!!!! & !!в начале названия класса (пока хз почему)
+			//!! (относится к data-spoller) класс добавляется автоматически если спойлер развернут (прописывать сюда его надо вручную (скопировать можно при дебаге в хроме) на его можно навешивать различные действия в разворот иконки
+			&::before {
+				transform: rotate(0deg);
+			}
+		}
+	}
+	// .price-filter__body
+	&__body {
+		padding: rem(30) 0 0 0;
+	}
+	// .price-filter__inputs
+	&__inputs {
+		display: flex;
+		border: 1px solid #cbcbcb;
+    border-radius: rem(3);
+    overflow: hidden;
+		&:not(:last-child) {
+			margin-bottom: rem(60);
+		}
+	}
+	// .price-filter__input
+	&__input {
+		width: 50%;
+		height: rem(42);
+    text-align: center;
+    padding: 0 rem(15);
+		&:not(:last-child) {
+			border-right: 1px solid #cbcbcb;
+		}
+	}
+	// .price-filter__range
+	&__range {
+	}
+}
+//! чекбоксы
+.item-filter-catalog {
+  // .item-filter-catalog__title
+  &__title {
+    background-color: $mainSiteColor;
+    width: 100%;
+    color: #fff;
+    padding: rem(13) rem(30);
+    display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: row-reverse;
+    &::before {
+			color: #e8aa31;
+			font-size: rem(8);
+			transform: rotate(-180deg);
+			transition: transform 0.3s ease 0s;
+		}
+		&._spoller-active {
+			//!!!!! & !!в начале названия класса (пока хз почему)
+			//!! (относится к data-spoller) класс добавляется автоматически если спойлер развернут (прописывать сюда его надо вручную (скопировать можно при дебаге в хроме) на его можно навешивать различные действия в разворот иконки
+			&::before {
+				transform: rotate(0deg);
+			}
+		}
+  }
+  // .item-filter-catalog__body
+  &__body {
+    padding: rem(30);
+  }
 }
 
 //!!  .pagging { перенес в common.scss (общие элементы) }

@@ -135,16 +135,16 @@ function initSliders() {
 					allSlides.innerHTML = allSlidesItem.length < 10 ? `0${allSlidesItem.length}` : allSlidesItem.length
 
 					//! смотрю что находится в swiper
-					console.log(swiper)
+					// console.log(swiper)
 					//! swiper.slides.length -> консоль хрома->Swiper->sliders<-(массив из моих слайдов)
 					// allSlides.innerHTML = swiper.slides.length < 10 ? `0${swiper.slides.length}` : swiper.slides.length
-					console.log(allSlides)
+					// console.log(allSlides)
 				},
 				slideChange: function (swiper) {
 					//получаю объект
 					const currentSlide = document.querySelector('.fraction-controll__current')
 					//! смотрю что находится в swiper
-					console.log(swiper)
+					// console.log(swiper)
 					//! swiper.slides.length -> консоль хрома->Swiper->sliders<-(массив из моих слайдов)
 					currentSlide.innerHTML = swiper.realIndex + 1 < 10 ? `0${swiper.realIndex + 1}` : swiper.realIndex + 1
 				},

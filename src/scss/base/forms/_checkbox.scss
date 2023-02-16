@@ -10,10 +10,11 @@
 		height: 0;
 		opacity: 0;
 		&:focus + .checkbox__label:before {
-			box-shadow: 0 0 5px #000;
+			// box-shadow: 0 0 5px rgb(255, 187, 0);
 		}
-		&:checked + .checkbox__label:before {
-			background: #000;
+		&:checked + .checkbox__label:after {//! было before
+			// background: #000;//! у
+			transform: scale(1);//! д
 		}
 	}
 	// .checkbox__label
@@ -26,10 +27,23 @@
 		&:before {
 			content: "";
 			align-self: flex-start;
-			flex: 0 0 20px;
-			width: 20px;
-			height: 20px;
-			border: 1px solid #a7a9ac;
+			flex: 0 0 rem(20);
+			width: rem(20);
+			height: rem(20);
+			border: 1px solid #e8aa31;
+			border-radius: 2px; //! д
+		}
+		&::after{//! д
+			content: '';
+			transition: all 0.3s ease 0s;
+			transform: scale(0);
+			position: absolute;
+			// border-radius: 2px; 
+			width: rem(14); 
+			height: rem(14); 
+			top: 3px; 
+			left: 3px;
+			background-color:#e8aa31;
 		}
 	}
 	// .checkbox__text

@@ -57,7 +57,7 @@
 	&__options {
 		color: #000;
 		position: absolute;
-		top: 29px;
+		top: 34px;//! было 29
 		border-radius: 0 0 4px 4px;
 		min-width: 100%;
 		left: 0;
@@ -65,7 +65,7 @@
 		border-top: 0;
 		border: 1px solid #d9d9d9;
 		border-top: 0;
-		padding: 10px 0px 5px 0px;
+		padding: 5px 0px 5px 0px;//! было 10 0 5 0
 	}
 	// .select__scroll
 	&__scroll {
@@ -128,6 +128,7 @@
 			border-radius: 3px;
 		}
 		.select__value {
+			position: relative;
 			height: rem(40);
 			color: rgb(0, 0, 0, 0.5);
 			//! в видео before но из за этого стрелка появляется слева (причина - в этом шаблоне не такой код как в видео в value выше добавлен псевдокласс after)
@@ -139,6 +140,7 @@
 			}
 		}
 		.select__option {
+			margin-top: rem(20);
 			color: rgb(0, 0, 0, 0.5);
 			@media (any-hover: hover) {
 				&:hover {
