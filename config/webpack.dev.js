@@ -47,7 +47,7 @@ const config = {
 		publicPath: '/'
 	},
 	devServer: {
-		historyApiFallback: true,
+		// historyApiFallback: true,
 		static: paths.build,
 		open: true,
 		compress: true,

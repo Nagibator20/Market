@@ -140,6 +140,7 @@ body {
 // Подключение стилей отдельных страниц
 @import 'home';
 @import 'catalog';
+@import 'product';
 
 //! Перенес из _home.scss и других scss файлов (сборная)
 .page {

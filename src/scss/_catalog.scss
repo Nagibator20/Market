@@ -1,19 +1,19 @@
 //! каталог
 .catalog {
-	@include adaptiveValue(
-		'padding-bottom',
-		120,
-		30
-	); // !отступ от кнопки "Показать больше" до footer'a (основного)
+	@include adaptiveValue('padding-bottom', 120, 30); // !отступ от кнопки "Показать больше" до footer'a (основного)
 	// .catalog__container
 	&__container {
 	}
 	// .catalog__body
 	&__body {
 		display: grid;
-    align-items: start;
-		grid-template-columns: rem(375) 1fr;
+		align-items: start;
+		// grid-template-columns: rem(375) 1fr; //~a1
 		gap: rem(30);
+		@media (min-width: $tablet) {
+			//~a1
+			grid-template-columns: rem(375) 1fr;
+		}
 	}
 	// .catalog__filter
 	&__filter {
@@ -33,16 +33,9 @@
 	&__products {
 		display: grid;
 		gap: rem(30);
-		grid-template-columns: repeat(
-			auto-fill,
-			minmax(rem(290), rem(375))
-		); //! ширина карточек минимальная максимальная
+		grid-template-columns: repeat(auto-fit, minmax(rem(290), 1fr)); //! ширина карточек минимальная максимальная
 		&:not(:last-child) {
-			@include adaptiveValue(
-				'margin-bottom',
-				60,
-				30
-			); // !отступ от каталога до кнопки "Показать больше"
+			@include adaptiveValue('margin-bottom', 60, 30); // !отступ от каталога до кнопки "Показать больше"
 		}
 	}
 	// .catalog__footer
@@ -50,6 +43,9 @@
 		display: flex;
 		justify-content: space-between;
 		gap: rem(20);
+		@media(max-width: $tablet){ //~a2 кнопка в catalog__footer и навигация по страницам при данном разрешении из строки становятся переходят в колонку
+			flex-direction: column;
+		}
 	}
 	// .catalog__more
 	&__more {
@@ -58,12 +54,13 @@
 	&__pagging {
 	}
 }
-//! ползунки (range)
+//! Заголовок фильтров
 .filter-catalog {
 	background: #fefefe;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 	// .filter-catalog__title
 	&__title {
+		width: 100%;//~ после того как сделал заголовок в виде спойлера с фильтрами пришлось растянуть
 		background-color: $mainSiteColor;
 		font-weight: bold;
 		font-size: rem(20);
@@ -78,6 +75,7 @@
 	&__price {
 	}
 }
+//! ползунки (range)
 .price-filter {
 	padding: rem(30);
 	// .price-filter__title
@@ -109,8 +107,8 @@
 	&__inputs {
 		display: flex;
 		border: 1px solid #cbcbcb;
-    border-radius: rem(3);
-    overflow: hidden;
+		border-radius: rem(3);
+		overflow: hidden;
 		&:not(:last-child) {
 			margin-bottom: rem(60);
 		}
@@ -119,8 +117,8 @@
 	&__input {
 		width: 50%;
 		height: rem(42);
-    text-align: center;
-    padding: 0 rem(15);
+		text-align: center;
+		padding: 0 rem(15);
 		&:not(:last-child) {
 			border-right: 1px solid #cbcbcb;
 		}
@@ -131,17 +129,17 @@
 }
 //! чекбоксы
 .item-filter-catalog {
-  // .item-filter-catalog__title
-  &__title {
-    background-color: $mainSiteColor;
-    width: 100%;
-    color: #fff;
-    padding: rem(13) rem(30);
-    display: flex;
+	// .item-filter-catalog__title
+	&__title {
+		background-color: $mainSiteColor;
+		width: 100%;
+		color: #fff;
+		padding: rem(13) rem(30);
+		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		flex-direction: row-reverse;
-    &::before {
+		&::before {
 			color: #e8aa31;
 			font-size: rem(8);
 			transform: rotate(-180deg);
@@ -154,11 +152,17 @@
 				transform: rotate(0deg);
 			}
 		}
-  }
-  // .item-filter-catalog__body
-  &__body {
-    padding: rem(30);
-  }
+	}
+	// .item-filter-catalog__body
+	&__body {
+		padding: rem(30);
+	}
+	// .item-filter-catalog__checkbox
+	&__checkbox {
+		&:not(:last-child) {
+			margin-bottom: rem(22);
+		}
+	}
 }
 
 //!!  .pagging { перенес в common.scss (общие элементы) }

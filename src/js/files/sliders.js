@@ -7,7 +7,7 @@
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
 // Пример: { Navigation, Autoplay }
-import Swiper, { Navigation, Pagination, Parallax, Autoplay } from 'swiper'
+import Swiper, { Navigation, Pagination, Parallax, Autoplay, Thumbs } from 'swiper'
 /*
 Основниые модули слайдера:
 Navigation, Pagination, Autoplay, 
@@ -59,8 +59,8 @@ function initSliders() {
 			modules: [Navigation, Pagination, Parallax, Autoplay],
 			observer: true,
 			observeParents: true,
-			slidesPerView: 1, // ! сколько изначально выведено объектов
-			spaceBetween: 50,
+			slidesPerView: 1, // ! сколько изначально выведено объектов!!! если в брейкпоинтах будет стоять другое число то тут не сработает
+			spaceBetween: 50, // !!! если в брейкпоинтах будет стоять другое число то тут не сработает
 			parallax: true,
 			// autoHeight: true, //! закомментировал как в видео
 			speed: 800,
@@ -163,8 +163,8 @@ function initSliders() {
 			modules: [Navigation, Pagination, Autoplay],
 			observer: true,
 			observeParents: true,
-			slidesPerView: 4, // ! сколько изначально выведено объектов
-			spaceBetween: 30, // ! расстояние между объектами
+			slidesPerView: 4, // ! сколько изначально выведено объектов !!! если в брейкпоинтах будет стоять другое число то тут не сработает
+			spaceBetween: 30, // ! расстояние между объектами !!! если в брейкпоинтах будет стоять другое число то тут не сработает
 			parallax: true,
 			// autoHeight: true, //! закомментировал как в видео
 			speed: 800,
@@ -244,8 +244,8 @@ function initSliders() {
 			modules: [Navigation, Pagination, Autoplay],
 			observer: true,
 			observeParents: true,
-			slidesPerView: 3, // ! сколько изначально выведено объектов
-			spaceBetween: 30, // ! расстояние между объектами
+			slidesPerView: 3, // ! сколько изначально выведено объектов !!! если в брейкпоинтах будет стоять другое число то тут не сработает
+			spaceBetween: 30, // ! расстояние между объектами !!! если в брейкпоинтах будет стоять другое число то тут не сработает
 			parallax: true,
 			// autoHeight: true, //! закомментировал как в видео
 			speed: 800,
@@ -308,6 +308,172 @@ function initSliders() {
 					spaceBetween: 30,
 				},
 			},
+
+			// События
+			on: {},
+		})
+	}
+
+	//! Тут слайдера 1й для большой карточки товара 2й для миниатюр(Thumbs) (индивидуальной карточки продукта (для миниатюр внизу))
+	//! их нужно объединить (в 1м - const thumbsSwiper = new Swiper(...) во 2м - в параметрах дописать - thumbs:{swiper:thumbsSwiper	},)
+	// ! ГЛАВНОЕ НЕ ОБЪЕБАТЬСЯ С КЛАССАМИ !!!!!!!!!!!!!!!!
+	if (document.querySelector('.thumbs-images')) {
+		// Указываем класс нужного слайдера
+		// Создаем слайдер
+		const thumbsSwiper = new Swiper('.thumbs-images', {
+			// Указываем класс нужного слайдера Pagination, Navigation или другие.
+			// Подключаем модули слайдера
+			// для конкретного случая
+			modules: [Navigation, Pagination, Autoplay, Thumbs],
+			observer: true,
+			observeParents: true,
+			watchOverflow: true,
+			slidesPerView: 4, // ! сколько изначально выведено объектов !!! если в брейкпоинтах будет стоять другое число то тут не сработает
+			spaceBetween: 16, // ! расстояние между объектами !!! если в брейкпоинтах будет стоять другое число то тут не сработае
+			parallax: true,
+			// autoHeight: true, //! закомментировал как в видео
+			speed: 800,
+
+			//touchRatio: 0,
+			//simulateTouch: false,
+			// loop: true, //! (если слайд 1 он добавит еще 2) смена слайдов по кругу
+			// autoplay: {
+			// 	delay: 3000,
+			// 	disableOnInteraction: false,
+			// },
+
+			// thumbs:{
+			// 	swiper:thumbsSwiper
+			// },
+
+			//preloadImages: false,
+			//lazy: true,
+
+			// Эффекты
+			// effect: 'fade',
+
+			// Пагинация
+
+			// pagination: {
+			// 	// прописываю сюда класс из Html
+			// 	el: '.products-new__dotts',
+			// 	clickable: true,
+			// 	dynamicBullets: true,
+			// },
+
+			// Скроллбар
+			/*
+					scrollbar: {
+						el: '.swiper-scrollbar',
+						draggable: true,
+					},
+					*/
+
+			// Кнопки "влево/вправо"
+			// navigation: {
+			// 	prevEl: '.swiper-button-prev',
+			// 	nextEl: '.swiper-button-next',
+			// },
+
+			// Брейкпоинты
+			// ! при разных разрешениях меняю количество слайдов ка экране
+			breakpoints: {
+				// 320: {//~a
+				// 	slidesPerView: 1,
+				// 	spaceBetween: 10,
+				// 	// autoHeight: true,
+				// },
+				// 768: {
+				// 	slidesPerView: 2,
+				// 	spaceBetween: 16,
+				// },
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 16,
+				},
+				1330: {
+					slidesPerView: 4,
+					spaceBetween: 16,
+				},
+			},
+
+			// События
+			on: {},
+		})
+		new Swiper('.images-product__slider', {
+			// Указываем класс нужного слайдера Pagination, Navigation или другие.
+			// Подключаем модули слайдера
+			// для конкретного случая
+			modules: [Navigation, Pagination, Autoplay, Thumbs],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1, // ! сколько изначально выведено объектов!!! если в брейкпоинтах будет стоять другое число то тут не сработает
+			spaceBetween: 30, // ! расстояние между объектами !!! если в брейкпоинтах будет стоять другое число то тут не сработает
+			// parallax: true,
+			// autoHeight: true, //! закомментировал как в видео
+			speed: 800,
+
+			//touchRatio: 0,
+			//simulateTouch: false,
+			loop: true, //! (если слайд 1 он добавит еще 2) смена слайдов по кругу
+			//! автоматическая смена слайда //!!! Раскоментировать
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			thumbs: {
+				swiper: thumbsSwiper,
+			},
+			//preloadImages: false,
+			//lazy: true,
+
+			// Эффекты
+			// effect: 'fade',
+
+			// Пагинация
+
+			pagination: {
+				// прописываю сюда класс из Html
+				el: '.products-new__dotts',
+				clickable: true,
+				dynamicBullets: true,
+			},
+
+			// Скроллбар
+			/*
+					scrollbar: {
+						el: '.swiper-scrollbar',
+						draggable: true,
+					},
+					*/
+
+			// Кнопки "влево/вправо"
+			// navigation: {
+			// 	prevEl: '.swiper-button-prev',
+			// 	nextEl: '.swiper-button-next',
+			// },
+
+			// Брейкпоинты
+			// // ! при разных разрешениях меняю количество слайдов ка экране
+			// breakpoints: {
+			// 	320: {
+			// 		slidesPerView: 1,
+			// 		spaceBetween: 10,
+			// 		// autoHeight: true,
+			// 	},
+			// 	768: {
+			// 		slidesPerView: 2,
+			// 		spaceBetween: 20,
+			// 	},
+			// 	992: {
+			// 		slidesPerView: 2,
+			// 		spaceBetween: 20,
+			// 	},
+			// 	1330: {
+			// 		slidesPerView: 3,
+			// 		spaceBetween: 30,
+			// 	},
+			// },
 
 			// События
 			on: {},

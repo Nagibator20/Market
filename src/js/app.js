@@ -46,7 +46,7 @@ flsFunctions.spollers();
 Документация: https://template.fls.guru/template-docs/modul-taby.html
 Сниппет (HTML): tabs
 */
-// flsFunctions.tabs();
+flsFunctions.tabs();
 
 /*
 Модуль "показать еще"
@@ -83,7 +83,7 @@ flsForms.formFieldsInit({ viewPass: false });
 flsForms.formSubmit();
 
 /* Модуль формы "колличество" */
-// flsForms.formQuantity();
+flsForms.formQuantity();
 
 /* Модуль звездного рейтинга */
 flsForms.formRating();
@@ -120,8 +120,8 @@ flsForms.formRating();
 */
 import "./files/tippy.js";
 
-// ===================================================
-// Работа со слайдером (Swiper) ===========================================
+// ================================================
+// Работа со слайдером (Swiper) 
 // ================================================
 /*
 Настройка подключения плагина слайдера Swiper и новых слайдеров выполняется в файле js/files/sliders.js

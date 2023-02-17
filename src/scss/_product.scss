@@ -1,0 +1,271 @@
+.product {
+	// .product__container
+	&__container {
+	}
+	// .product__main
+	&__main {
+		@include adaptiveValue('margin-bottom', 120, 40); //~a1
+	}
+	&__info {
+		@include adaptiveValue('margin-bottom', 120, 40); //~a1
+	}
+}
+.main-product {
+	display: grid;
+	align-items: start; //! убирает "растягивания" карточки с информацией на высоту родительского блока
+	// @include adaptiveValue('margin-bottom', 120, 40);//~a 1 margin нельзя вставлять в БЭМ блок!!!
+	// grid-template-columns: percent(785, 1600) 1fr;//~a //! 785 отступ от левого края ограничивающего контейнера, 1600 ограничивающий контейнер
+	@media (min-width: $tablet) {
+		//~a
+		grid-template-columns: percent(785, 1600) 1fr; //! 785 отступ от левого края ограничивающего контейнера, 1600 ограничивающий контейнер
+	}
+	// .main-product__images
+	&__images {
+		@media (min-width: $tablet) {
+			//~a
+			padding: 0 rem(30) 0 0; //! перенес сюда иначе при разрешении планшета справа будет большой отступ
+		}
+		// padding: 0 rem(30) 0 0; //~a
+	}
+}
+.images-product {
+	display: grid;
+	gap: rem(16);
+	// .images-product__slider
+	&__slider {
+	}
+	// .images-product__swiper
+	&__swiper {
+	}
+	// .images-product__slide-ibg
+	&__slide-ibg {
+		cursor: pointer;
+		padding-bottom: percent(575, 754); //!!!! Размер картинки задается padding-bottom и в процентах (деля ширину на высоту)
+	}
+	// .images-product__thumbs
+	&__thumbs {
+	}
+}
+.thumbs-images {
+	// .thumbs-images__swiper
+	&__swiper {
+	}
+	// .thumbs-images__slide-ibg
+	&__slide-ibg {
+		cursor: pointer;
+		opacity: 0.5; //! Важно не перепутать __slide-ibg!! прописал у верхнего прозрачным был верхний ДОЛГО НЕ МОГ ПОНЯТЬ В ЧЕМ ДЕЛО!!!
+		transition: opacity 0.3s ease 0s;
+		&.swiper-slide-thumb-active {
+			//! класс вставил сам, найти его можно при дебаге в хроме
+			opacity: 1;
+		}
+		padding-bottom: percent(177, 754); //!!!! Размер картинки задается padding-bottom и в процентах (деля ширину на высоту главной картинки)
+	}
+}
+
+// ! карточка с информацией
+
+.body-product {
+	background: #fefefe;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+	// padding: rem(30);//~a
+	@include adaptiveValue('padding', 30, 15);
+	// .body-product__header
+	&__header {
+		border-bottom: 1px solid rgba(20, 20, 20, 0.15);
+		padding: 0 0 rem(30) 0;
+	}
+	// .body-product__table
+	&__table {
+		border-bottom: 1px solid rgba(20, 20, 20, 0.15);
+		padding: rem(30) 0;
+	}
+	// .body-product__options
+	&__options {
+		border-bottom: 1px solid rgba(20, 20, 20, 0.15);
+		padding: rem(30) 0;
+	}
+	// .body-product__action
+	&__action {
+		padding: rem(30) 0 0 0;
+	}
+}
+.header-product {
+	// .header-product__line
+	&__line {
+		display: flex;
+		column-gap: rem(30); //! отступ между элементами в заголовке
+		row-gap: rem(15);
+		&:not(:last-child) {
+			margin-bottom: rem(10); //! отступ от заголовка к звездочкам
+		}
+		@media (max-width: $mobile) {
+			//~a при мобильном разрешении иконки будут в столбик
+			flex-wrap: wrap;
+		}
+	}
+	// .header-product__title
+	&__title {
+		font-size: rem(24);
+		font-weight: 700;
+		// !!!!! TODO исправить во всех подсказках что писал ранее там (возможно) неправильно
+		line-height: math.div(29, 24); //!!! 29 высота блока 24 р-р текста
+		// flex: 1 1 auto; //~a//!! расширяет заголовок отталкивает 2 других блока к правому краю
+		flex: 1 1 100%; //~a выше добавил flex-wrap: wrap; и тут изменил на 100% так как некоректно перескакивали иконки
+	}
+	// .header-product__link
+	&__link {
+		font-size: rem(24);
+	}
+	// .header-product__rating
+	&__rating {
+	}
+}
+.table-product {
+	display: grid;
+	// grid-template-columns: rem(200) 1fr;//~a
+	gap: rem(20);
+	// .table-product__lable
+	&__lable {
+	}
+	// .table-product__value
+	&__value {
+		color: rgba(20, 20, 20, 0.5);
+	}
+	@media (mix-width: $mobile) {
+		//~a при мобильном разрешении пункты таблицы будут в столбик
+		grid-template-columns: rem(200) 1fr;
+	}
+}
+.options-product {
+	display: grid;
+	@media (mix-width: $mobile) {
+		//~a при мобильном разрешении выпадающее меню и категория выбора (сталь и.т.д будут в столбик)
+		grid-template-columns: rem(200) 1fr;
+	}
+	gap: rem(20);
+	// .options-product__label
+	&__label {
+		align-self: center; //! центрирует внутри своего блока
+	}
+	// .options-product__value
+	&__value {
+	}
+}
+.action-product {
+	// .action-product__price
+	&__price {
+		font-size: rem(30);
+		font-weight: 700;
+		display: inline-block;
+		// !!!!! TODO исправить во всех подсказках что писал ранее там (возможно) неправильно
+		line-height: math.div(37, 30); //!!! 37 высота блока 30 р-р текста
+		padding: 0 rem(30) 0 0;
+		&:not(:last-child) {
+			margin-bottom: em(35, 30);
+		}
+	}
+	// .action-product__row
+	&__row {
+		display: flex;
+		gap: rem(20);
+		@media (max-width: em(1545)) {
+			//~a
+			flex-direction: column;
+		}
+	}
+	// .action-product__quantity
+	&__quantity {
+	}
+	// .action-product__buttons
+	&__buttons {
+		flex: 1 1 auto;
+		display: flex;
+		flex-wrap: wrap; //~ a не дает тексту перескакивать на 2й ряд
+		// justify-content: flex-end;//~ a
+		gap: rem(20);
+		@media (min-width: em(1545)) {
+			//~a
+			// justify-content: flex-end;
+		}
+	}
+	// .action-product__cart
+	&__cart {
+		span {
+			display: flex;
+			align-items: center;
+			flex-direction: row-reverse;
+			// margin: 0 0 0 rem(20);//! так работает неправильно нужно писать в before
+			&::before {
+				margin: 0 0 0 rem(20); //! левый отступ от иконки до текста
+			}
+		}
+		@media (max-width: $mobileSmall) {
+			width: 100%;
+			//! ТОТО нужно подправить центрирование текста (в корзину)
+		}
+	}
+	// &__button{ //!! так в видео хз зачем он так сделал
+	// 	@media(max-width: $mobileSmall){
+	// 		width: 100%;
+	// 	}
+	// }
+}
+.icon-rub {
+	display: flex; //! добавил сам в видео такого нет тка как у меня иконка рубля, а не картинка.
+	flex-direction: row-reverse; //!
+	justify-content: space-between; //!
+}
+
+//! Табы=======================
+.product-info {
+	background: #fefefe;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	padding: rem(10) rem(30) rem(30) rem(30);
+	// .product-info__navigation
+	&__navigation {
+		display: flex;
+		justify-content: flex-start;
+		@include adaptiveValue('gap', 60, 30);
+		border-bottom: 1px solid rgba(20, 20, 20, 0.15);
+		._tab-spoller & {
+			//! класс вставил сам, найти его можно при дебаге в хроме!!!( В ПЕРЕДИ ДОЛЖНА СТОЯТЬ ТОЧКА (._) а знак (&) в конце) пока хз почему
+			display: none;
+		}
+	}
+	// .product-info__title
+	&__title {
+		font-size: rem(20);
+		padding: rem(20) 0;
+		line-height: math.div(24, 20);
+		color: rgba(20, 20, 20, 0.5);
+		position: relative;
+		._tab-spoller & {
+			//! класс вставил сам, найти его можно при дебаге в хроме!!!( В ПЕРЕДИ ДОЛЖНА СТОЯТЬ ТОЧКА (._) а знак (&) в конце) пока хз почему
+			width: 100%;
+		}
+		&._tab-active {
+			//! класс вставил сам, найти его можно при дебаге в хроме!!!( В ПЕРЕДИ ДОЛЖНА СТОЯТЬ ТОЧКА и знак (&) -> &._)пока хз почему
+			&::after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 1px;
+				bottom: -1px;
+				left: 0;
+				background-color: #e8aa31;
+			}
+		}
+	}
+	// .product-info__content
+	&__content {
+		padding: rem(30) 0 0 0;
+	}
+	// .product-info__body
+	&__body {
+		._tab-spoller & {
+			//! класс вставил сам, найти его можно при дебаге в хроме!!!( В ПЕРЕДИ ДОЛЖНА СТОЯТЬ ТОЧКА (._) а знак (&) в конце) пока хз почему
+			padding: rem(30) 0;
+		}
+	}
+}

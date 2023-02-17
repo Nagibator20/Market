@@ -173,9 +173,8 @@ class SelectConstructor {
 		// console.dir(originalSelect.className)
 		// console.dir(selectItem)
 		originalSelect.className ? selectItem.classList.add(`select_${originalSelect.className}`) : null;
-
 		//!!! СУКА пол дня проебался что бы найти причину!!! так не правильно
-		// !! originalSelect.dataset.classModif ? selectItem.classList.add(`select_${originalSelect.dataset.classModif}`) : null;
+		//  originalSelect.dataset.classModif ? selectItem.classList.add(`select_${originalSelect.dataset.classModif}`) : null;
 
 		// Если множественный выбор, добавляем класс
 		originalSelect.multiple ? selectItem.classList.add(this.selectClasses.classSelectMultiple) : selectItem.classList.remove(this.selectClasses.classSelectMultiple);

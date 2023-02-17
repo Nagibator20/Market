@@ -1,15 +1,17 @@
 //<QUANTITY>
 // Снипет (HTML): qa
 .quantity {
-	width: 88px;
-	height: 40px;
+	width: 150px;//! и
+	height: 50px;//! и
 	display: flex;
 	border: 1px solid rgba(166, 166, 166, 0.45);
 	// .quantity__button
 	&__button {
-		flex: 0 0 30px;
+		flex: 0 0 50px;//! и
+		height: rem(50);//! д
 		position: relative;
 		cursor: pointer;
+		background-color: #000;
 		&::before,
 		&::after {
 			content: "";
@@ -46,7 +48,7 @@
 		input {
 			height: 100%;
 			color: #a6a6a6;
-			font-size: 12px;
+			font-size: 20px;//! и
 			width: 100%;
 			text-align: center;
 		}
