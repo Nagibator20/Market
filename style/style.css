@@ -924,6 +924,14 @@ body {
   right: 28px;
 }
 
+.noUi-tooltip {
+  display: none;
+}
+
+.noUi-active .noUi-tooltip {
+  display: block;
+}
+
 body::after {
   content: "";
   background-color: rgba(0, 0, 0, 0.5);
