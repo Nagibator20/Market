@@ -74,10 +74,10 @@ function initSliders() {
 			// Эффекты
 			// effect: 'fade',
 			//! автоматическая смена слайда //!!! Раскоментировать
-			// autoplay: {
-			// 	delay: 3000,
-			// 	disableOnInteraction: false,
-			// },
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 
 			// Пагинация
 
@@ -173,10 +173,10 @@ function initSliders() {
 			//simulateTouch: false,
 			loop: true, //! (если слайд 1 он добавит еще 2) смена слайдов по кругу
 			//! автоматическая смена слайда //!!! Раскоментировать
-			// autoplay: {
-			// 	delay: 3000,
-			// 	disableOnInteraction: false,
-			// },
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			//preloadImages: false,
 			//lazy: true,
 
@@ -254,10 +254,10 @@ function initSliders() {
 			//simulateTouch: false,
 			loop: true, //! (если слайд 1 он добавит еще 2) смена слайдов по кругу
 			//! автоматическая смена слайда //!!! Раскоментировать
-			// autoplay: {
-			// 	delay: 3000,
-			// 	disableOnInteraction: false,
-			// },
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			//preloadImages: false,
 			//lazy: true,
 
